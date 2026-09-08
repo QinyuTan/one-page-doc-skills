@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<!--
+  one-pager · T1 瑞士蓝本 reference implementation (style-system.md §4 T1; A4 mechanics in references/typography.md)
+  Self-contained: no external fonts, no external images (base64 only), no JS.
+  Injection points are marked with FILL comments. Keep the CSS untouched.
+  Structure: .page (exactly one A4 content page) + optional .narrative tier (batch mode, ≤6 pages,
+  references/batch-mode.md) + .appendix (own page, free-format).
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>one-pager</title>
+<style>
+  :root {
+    --paper: #fafaf8; --grey-1: #f0f0ee; --grey-2: #d4d4d2; --grey-3: #737373; --ink: #0a0a0a;
+    --accent: #002FA7; /* one of: #002FA7 | #FF6B35 | #FFD500 (non-text) | #C5E803 (non-text) */
+    --sans: "Helvetica Neue", Helvetica, "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "PingFang SC", Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--grey-1); }
+  body { font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+
+  /* ---------- header ---------- */
+  .kicker {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  .title { font-size: 54px; font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-top: 16px; }
+  .deck { font-size: 14px; font-weight: 400; color: var(--grey-3); line-height: 1.6; margin-top: 10px; max-width: 62ch; }
+  .rule-strong { border: 0; border-top: 2px solid var(--ink); margin: 22px 0 24px; }
+
+  /* ---------- body ---------- */
+  .lead {
+    font-size: 15.5px; font-weight: 400; line-height: 1.7;
+    border-left: 3px solid var(--accent); padding-left: 18px; margin-bottom: 24px; max-width: 62ch;
+  }
+  section { margin-bottom: 24px; }
+  .sec-label {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .sec-label::before { content: ""; width: 7px; height: 7px; background: var(--accent); flex: none; }
+  .sec-label span.en { text-transform: none; letter-spacing: 0; } /* optional English gloss inside label */
+  p { font-size: 13.5px; line-height: 1.78; max-width: 46em; }
+  p + p { margin-top: 8px; }
+  p .num { font-weight: 500; } /* figures get weight, not color */
+
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 18px 0 24px; }
+  .row.two { grid-template-columns: repeat(2, 1fr); }
+  .metric .v { font-size: 38px; font-weight: 200; line-height: 1.1; }
+  .metric .v.accent { color: var(--accent); } /* text-accent only with #002FA7 / #FF6B35 */
+  .metric .l { font-size: 10.5px; color: var(--grey-3); margin-top: 6px; line-height: 1.5; }
+
+  figure { margin: 18px 0 24px; border-top: 1px solid var(--grey-2); border-bottom: 1px solid var(--grey-2); padding: 10px 0; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-family: var(--mono); font-size: 10px; color: var(--grey-3); margin-top: 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; }
+  thead th {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; color: var(--grey-3);
+    text-align: left; padding: 6px 10px 6px 0; border-top: 1px solid var(--grey-2);
+    border-bottom: 1px solid var(--grey-2); letter-spacing: 0.05em;
+  }
+  tbody td { font-size: 12px; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--grey-2); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.n, th.n { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+
+  .footnote { font-size: 10.5px; color: var(--grey-3); line-height: 1.6; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--grey-2); }
+
+  .page-flex { display: flex; flex-direction: column; height: 100%; }
+  .page-flex .body { flex: 1; }
+
+  /* ---------- appendix: its own A4 page ---------- */
+  .appendix {
+    width: 794px; min-height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); break-before: page;
+  }
+  .appendix h3 { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-3); margin: 22px 0 10px; }
+  .appendix h3:first-of-type { margin-top: 0; }
+  .appendix p, .appendix li { font-size: 11.5px; line-height: 1.65; }
+  .appendix ul { padding-left: 18px; }
+  .appendix td { font-size: 11px; }
+
+  /* ---------- narrative tier: batch mode's six-page memo (optional; references/batch-mode.md) ---------- */
+  .narrative {
+    width: 794px; min-height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); break-before: page;
+  }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: var(--paper); }
+    .page, .appendix { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE ONE (the one-pager body — must fit 1123px) ==================== -->
+<div class="page">
+  <div class="page-flex">
+
+    <header>
+      <!-- FILL kicker-left: MODE · TOPIC  (e.g. "MEMO · Q3 获客渠道决策") -->
+      <!-- FILL kicker-right: date + author (e.g. "2026-09-08 · TAN R") -->
+      <div class="kicker">
+        <div>KICKER LEFT</div>
+        <div>KICKER RIGHT</div>
+      </div>
+      <!-- FILL title: the claim, not the topic. ZH ≤12 chars per line (R9); display:body ≥4:1 -->
+      <h1 class="title">Title — the claim, stated so it could be disagreed with</h1>
+      <!-- FILL deck: one line of context. Delete the element if not needed. -->
+      <p class="deck">Deck — one line of context for the reader.</p>
+      <hr class="rule-strong">
+    </header>
+
+    <div class="body">
+      <!-- FILL lead: BLUF / thesis — first sentence = conclusion + headline number -->
+      <p class="lead">Lead paragraph: the answer first.</p>
+
+      <!-- FILL sections per mode template. Section label = short functional name. -->
+      <section>
+        <div class="sec-label">SECTION LABEL</div>
+        <p>Body paragraph. Full sentences; numbers inline as <span class="num">4,900</span> with weight, not color.</p>
+      </section>
+
+      <!-- OPTIONAL metrics row: delete if no genuine data. text-accent values only with IKB / orange. -->
+      <div class="row">
+        <div class="metric"><div class="v accent">+38%</div><div class="l">metric label — unit &amp; scope</div></div>
+        <div class="metric"><div class="v">¥36.7</div><div class="l">metric label — unit &amp; scope</div></div>
+        <div class="metric"><div class="v">4,900</div><div class="l">metric label — unit &amp; scope</div></div>
+      </div>
+
+      <!-- OPTIONAL figure: base64 image only
+      <figure>
+        <img src="data:image/png;base64,..." alt="">
+        <figcaption>figure caption — source &amp; reading</figcaption>
+      </figure>
+      -->
+
+      <!-- OPTIONAL data table: horizontal hairlines only
+      <table>
+        <thead><tr><th>col</th><th class="n">value</th></tr></thead>
+        <tbody><tr><td>row</td><td class="n">1,234</td></tr></tbody>
+      </table>
+      -->
+    </div>
+
+    <!-- FILL footnote: source of numbers / cut-line pointing to appendix. Sits at page bottom. -->
+    <p class="footnote">Footnote — data sources and what lives in the appendix.</p>
+
+  </div>
+</div>
+
+<!-- ==================== N1 · SIX-PAGE NARRATIVE (batch mode only; delete whole block if not batch) ==================== -->
+<div class="narrative">
+  <div class="kicker" style="margin-bottom:18px;"><div>SIX-PAGE NARRATIVE</div><div>MODE: BATCH · N1</div></div>
+  <!-- FILL: ≤6 pages of complete-sentence narrative per references/batch-mode.md.
+       Reuses global p / .sec-label / table styles (body 13.5px, inside the R3 band).
+       D# anchors stay continuous with N0, same traceability table. -->
+  <section>
+    <div class="sec-label">N1 · SECTION</div>
+    <p>Narrative prose. Complete sentences; numbers with (D#) anchors, same traceability table as N0.</p>
+  </section>
+</div>
+
+<!-- ==================== APPENDIX (optional; delete whole block if unused) ==================== -->
+<div class="appendix">
+  <div class="kicker" style="margin-bottom:18px;"><div>APPENDIX</div><div>PAGE 2+</div></div>
+  <!-- FILL appendix: raw tables, calculations, methodology, full notes. Free format, appendix scale. -->
+  <h3>A1 · SECTION</h3>
+  <p>Evidence that would crowd page one.</p>
+</div>
+
+</body>
+</html>

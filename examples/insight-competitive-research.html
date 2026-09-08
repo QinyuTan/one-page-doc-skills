@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--
+  one-pager · AI 笔记竞品调研 → Insight Page（信服洞察分叉）
+  模板声明：T1 瑞士蓝本皮肤体系 × S7 数据叙事骨架（按内容形状路由：数据主体 → S7）
+  皮肤参数：亮底 #fafaf8 · 单 accent IKB #002FA7 · 全无衬线（系统栈，typography.md 声明偏差）· 直角 · 单一装饰（hairline + 8px accent 方块）
+  密度：说服汇报型（≤5 信息组，网格自足）
+  自包含：无外部字体/图片/JS；A4 794×1123；附页独立成页。
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>越贵，越留得住 · AI 笔记竞品调研一页纸</title>
+<style>
+  :root {
+    --paper: #fafaf8; --grey-1: #f0f0ee; --grey-2: #d4d4d2; --grey-3: #737373; --ink: #0a0a0a;
+    --accent: #002FA7;
+    --sans: "Helvetica Neue", Helvetica, "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "PingFang SC", Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--grey-1); }
+  body { font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+
+  /* ---------- header ---------- */
+  .kicker {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  .title { font-size: 54px; font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-top: 16px; }
+  .deck { font-size: 14px; font-weight: 400; color: var(--grey-3); line-height: 1.6; margin-top: 10px; max-width: 62ch; }
+  .rule-strong { border: 0; border-top: 2px solid var(--ink); margin: 22px 0 24px; }
+
+  /* ---------- body ---------- */
+  .lead {
+    font-size: 15.5px; font-weight: 400; line-height: 1.7;
+    border-left: 3px solid var(--accent); padding-left: 18px; margin-bottom: 24px; max-width: 62ch;
+  }
+  section { margin-bottom: 24px; }
+  .sec-label {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .sec-label::before { content: ""; width: 7px; height: 7px; background: var(--accent); flex: none; }
+  p { font-size: 13.5px; line-height: 1.78; max-width: 46em; }
+  p + p { margin-top: 8px; }
+  p .num { font-weight: 500; }
+
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 18px 0 24px; }
+  .metric .v { font-size: 38px; font-weight: 200; line-height: 1.1; }
+  .metric .v.accent { color: var(--accent); }
+  .metric .l { font-size: 10.5px; color: var(--grey-3); margin-top: 6px; line-height: 1.5; }
+
+  figure { margin: 18px 0 24px; border-top: 1px solid var(--grey-2); border-bottom: 1px solid var(--grey-2); padding: 10px 0; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-family: var(--mono); font-size: 10px; color: var(--grey-3); margin-top: 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; }
+  thead th {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; color: var(--grey-3);
+    text-align: left; padding: 6px 10px 6px 0; border-top: 1px solid var(--grey-2);
+    border-bottom: 1px solid var(--grey-2); letter-spacing: 0.05em;
+  }
+  tbody td { font-size: 12px; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--grey-2); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.n, th.n { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+
+  .footnote { font-size: 10.5px; color: var(--grey-3); line-height: 1.6; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--grey-2); }
+
+  .page-flex { display: flex; flex-direction: column; height: 100%; }
+  .page-flex .body { flex: 1; }
+
+  /* ---------- appendix: its own A4 page ---------- */
+  .appendix {
+    width: 794px; min-height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); break-before: page;
+  }
+  .appendix h3 { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-3); margin: 22px 0 10px; }
+  .appendix h3:first-of-type { margin-top: 0; }
+  .appendix p, .appendix li { font-size: 11.5px; line-height: 1.65; }
+  .appendix ul { padding-left: 18px; }
+  .appendix td { font-size: 11px; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: var(--paper); }
+    .page, .appendix { margin: 0; }
+  }
+
+  /* ============ S7 组装增量（声明项，不动上方 T1 基线规则） ============
+     1) 汇报型密度：section/lead/row 间距收紧；figure 上下距收紧
+     2) 主图 SVG 直标文字（10px = R3 地板）
+     3) 附页压缩：td padding 与 h3 间距（证据区自由格式，紧凑化） */
+  .page section { margin-bottom: 13px; }
+  .page .lead { margin-bottom: 13px; max-width: 46em; }
+  .page .row { margin: 10px 0 0; }
+  .page .rule-strong { margin: 14px 0 16px; }
+  .page .title { margin-top: 12px; }
+  .page figure { margin: 8px 0 0; padding: 4px 0; }
+  .page figure { margin: 10px 0 0; padding: 6px 0; }
+  figure svg { display: block; width: 100%; height: auto; }
+  .fine { font-size: 11px; color: var(--grey-3); line-height: 1.6; margin-top: 6px; }
+  .appendix h3 { margin: 14px 0 8px; }
+  .appendix td { padding: 4px 10px 4px 0; }
+  .cname { font-family: var(--sans); font-size: 12.5px; font-weight: 600; fill: var(--ink); }
+  .cprice { font-family: var(--mono); font-size: 10px; fill: var(--grey-3); }
+  .cval { font-family: var(--sans); font-size: 12px; font-weight: 600; fill: var(--ink); }
+  .cann { font-family: var(--mono); font-size: 10px; fill: var(--grey-3); }
+  .cann .tag-best { fill: var(--accent); font-weight: 600; }
+  .cann .tag-worst { fill: var(--grey-3); font-weight: 600; }
+  .caxis { font-family: var(--mono); font-size: 10px; fill: var(--grey-3); }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE ONE ==================== -->
+<div class="page">
+  <div class="page-flex">
+
+    <header>
+      <div class="kicker">
+        <div>INSIGHT · AI 笔记竞品调研 2026 H1</div>
+        <div>2026-09-08 · 管理层战略会预读</div>
+      </div>
+      <h1 class="title">越贵，越留得住</h1>
+      <hr class="rule-strong">
+    </header>
+
+    <div class="body">
+
+      <p class="lead">切入点在“克制的高价精品”象限，而非“低价全功能”：面向深度工作者，高定价、少功能、强专注。四家竞品数据完全同向——定价越高，留存、口碑与单位经济越好。置信度中等：四家同向且跨市场一致，但样本仅四家、因果未验证。</p>
+
+      <section>
+        <div class="sec-label">SCQ · 低价换量已被证伪</div>
+        <p>公司拟进入 AI 笔记赛道：市场约<span class="num">$4.7B</span>、年增<span class="num">28%</span> (D1)，四家头部分占 <span class="num">8.2M/5.1M/3.9M/1.4M</span> MAU（月活跃用户）(D2)。“低价全功能”已被记灵走到头：¥6/月拿下留存、NPS（净推荐值）、转化、单位经济四项全场最差，€28/月的 Lumina 包揽四项最佳 (D3)。</p>
+        <div class="row">
+          <div class="metric"><div class="v accent">80% / 42%</div><div class="l">D30 留存 · 最高价 vs 最低价 (D4)</div></div>
+          <div class="metric"><div class="v">61 / 12</div><div class="l">NPS · 最高价 vs 最低价 (D6)</div></div>
+          <div class="metric"><div class="v">6.3 / 0.9</div><div class="l">LTV/CAC（用户终身价值/获客成本）· 最高 vs 最低 (D14)(D15)</div></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-label">主图 · 月费升序下，留存与转化率单调上行</div>
+        <figure>
+          <svg viewBox="0 0 682 112" role="img" aria-label="四家竞品按月费升序的 D30 留存条形图，附 NPS 与付费转化率直标">
+            <!-- gridlines: 0 / 25 / 50 / 75 / 100% (scale: 100% = 400px) -->
+            <line x1="128" y1="2" x2="128" y2="96" stroke="#737373" stroke-width="1"/>
+            <line x1="228" y1="2" x2="228" y2="96" stroke="#d4d4d2" stroke-width="1"/>
+            <line x1="328" y1="2" x2="328" y2="96" stroke="#d4d4d2" stroke-width="1"/>
+            <line x1="428" y1="2" x2="428" y2="96" stroke="#d4d4d2" stroke-width="1"/>
+            <line x1="528" y1="2" x2="528" y2="96" stroke="#d4d4d2" stroke-width="1"/>
+            <!-- bars, price-ascending top to bottom -->
+            <rect x="128" y="5"  width="168" height="14" fill="#737373"/>
+            <rect x="128" y="30" width="232" height="14" fill="#737373"/>
+            <rect x="128" y="55" width="256" height="14" fill="#737373"/>
+            <rect x="128" y="80" width="320" height="14" fill="#002FA7"/>
+            <!-- direct labels: name + price -->
+            <text class="cname" x="0" y="15">记灵</text><text class="cprice" x="0" y="25.5">¥6/月</text>
+            <text class="cname" x="0" y="40">NoteFlow</text><text class="cprice" x="0" y="50.5">$12/月</text>
+            <text class="cname" x="0" y="65">MindScribe</text><text class="cprice" x="0" y="75.5">$19+/月</text>
+            <text class="cname" x="0" y="90" fill="#002FA7">Lumina</text><text class="cprice" x="0" y="100.5">€28/月</text>
+            <!-- direct labels: value + NPS + conversion + verdict tag -->
+            <text class="cval" x="303" y="15.5">42%</text>
+            <text class="cann" x="332" y="15.5">NPS 12 · 转化 1.2% · <tspan class="tag-worst">四项全场最差</tspan></text>
+            <text class="cval" x="367" y="40.5">58%</text>
+            <text class="cann" x="396" y="40.5">NPS 41 · 转化 4.1%</text>
+            <text class="cval" x="391" y="65.5">64%</text>
+            <text class="cann" x="420" y="65.5">NPS 33 · 转化 6.8%</text>
+            <text class="cval" x="455" y="90.5">80%</text>
+            <text class="cann" x="484" y="90.5">NPS 61 · 转化 11.3% · <tspan class="tag-best">四项全场最佳</tspan></text>
+            <!-- axis -->
+            <text class="caxis" x="128" y="108" text-anchor="middle">0</text>
+            <text class="caxis" x="228" y="108" text-anchor="middle">25%</text>
+            <text class="caxis" x="328" y="108" text-anchor="middle">50%</text>
+            <text class="caxis" x="428" y="108" text-anchor="middle">75%</text>
+            <text class="caxis" x="528" y="108" text-anchor="middle">100%</text>
+          </svg>
+          <figcaption>条长 = D30 留存，基线 0% (D4)；NPS (D6)、转化率 (D5) 直标行内；行序 = 官网月费 ¥6 &lt; $12 &lt; $19 &lt; €28 (D3)；NPS 极值分居两端。</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <div class="sec-label">机制 · 用户为专注付费，不为功能清单付费</div>
+        <p>[1] 用户要“少而安静”：记灵以便宜获客（<span class="num">78%</span>），<span class="num">42%</span> 流失用户抱怨“功能太杂…越用越焦虑”；Lumina 用户冲“安静、专注”而来（<span class="num">64%</span>），复购第一理由是“它不试图做所有事”（<span class="num">51%</span>）(D9)(D10)(D11)。[2] 功能数与口碑反向：MindScribe 41 项 NPS 33，Lumina 19 项 NPS 61 (D7)。[3] 付费意愿中位数 $9-15/月，Lumina 用户愿付 $28+ 比例是均值 <span class="num">3.2 倍</span>；词频“贵/专注/值”(D12)(D13)。</p>
+      </section>
+
+      <section>
+        <div class="sec-label">反方 · 三个替代解释，推翻不了结论</div>
+        <p>[1] “留存来自克制，高价只是筛选器”。两种机制指向同一策略：做减法，用价格筛出深度用户 (D7)。[2] “Lumina 是小基数幸存者”。1.4M MAU (D2) 却做出全场第一的付费转化 <span class="num">11.3%</span> (D5)，留存优势已兑现为收入。[3] “高价冷启动慢”。四家 2026H1 均上线 AI 摘要 (D16)，窗口在收窄；口碑冷启动已被 Lumina 验证（LTV/CAC 6.3，D15）。</p>
+      </section>
+
+      <section>
+        <div class="sec-label">切入 · 克制的高价精品，面向深度工作者</div>
+        <p>[1] 产品（Owner: PM）：为深度工作者写 PR/FAQ，功能上限对标 Lumina 19 项 (D7)，会后 2 周评审。[2] 定价（Owner: Finance）：放弃低价锚点，$12-28 三档测试 (D3)(D12)，Q4 前验证。[3] 增长（Owner: Growth）：复制口碑冷启动（LTV/CAC 6.3，D15），以记灵买量倒挂 0.9 为戒 (D14)，6 个月复盘。</p>
+        <p class="fine">Non-Goals：具体定价数值、渠道组合与 Lumina 入华防御不在本页裁决。</p>
+      </section>
+
+    </div>
+
+    <p class="footnote">数据基础：2026-06 第三方监测 × n=306 中美欧用户调研交叉验证 (D8)；浓缩自《AI 笔记应用竞品调研报告（2026 H1）》，D1–D16 锚点与附页 A1 溯源表一一对应，任一数字 3 分钟内可 crosscheck。</p>
+
+  </div>
+</div>
+
+<!-- ==================== APPENDIX ==================== -->
+<div class="appendix">
+  <div class="kicker" style="margin-bottom:18px;"><div>APPENDIX · 证据与溯源</div><div>AI 笔记竞品调研 2026 H1 · PAGE 2/2</div></div>
+
+  <h3>A1 · 数据溯源表（正文锚点 D1–D16 ↔ 本表，双向完整）</h3>
+  <table>
+    <thead><tr><th>锚点</th><th>数据值</th><th>来源</th><th>时间·版本</th><th>可复核路径</th></tr></thead>
+    <tbody>
+      <tr><td>D1</td><td>全球市场约 $4.7B，年增 28%</td><td>Gartner 报告</td><td>2026-03</td><td>原报告 §一</td></tr>
+      <tr><td>D2</td><td>MAU：NoteFlow 8.2M / MindScribe 5.1M / 记灵 3.9M / Lumina 1.4M</td><td>数据监测</td><td>2026-06</td><td>原报告 §一</td></tr>
+      <tr><td>D3</td><td>官网月费：记灵 ¥6；NoteFlow $12；MindScribe $19 + AI 用量加购；Lumina €28（免费版与模式细节见 A3）</td><td>官网标价</td><td>2026-06</td><td>原报告 §二</td></tr>
+      <tr><td>D4</td><td>D30 留存：记灵 42% / NoteFlow 58% / MindScribe 64% / Lumina 80%</td><td>第三方监测</td><td>2026-06</td><td>原报告 §三；口径见原报告附录 D</td></tr>
+      <tr><td>D5</td><td>付费转化率：记灵 1.2% / NoteFlow 4.1% / MindScribe 6.8% / Lumina 11.3%</td><td>第三方监测</td><td>2026-06</td><td>原报告 §三</td></tr>
+      <tr><td>D6</td><td>NPS：记灵 12 / NoteFlow 41 / MindScribe 33 / Lumina 61</td><td>第三方监测</td><td>2026-06</td><td>原报告 §三</td></tr>
+      <tr><td>D7</td><td>功能数：MindScribe 41 项 / Lumina 19 项（41 项功能维度矩阵）</td><td>功能矩阵</td><td>2026-06</td><td>原报告 §三；全表见原报告附录 A</td></tr>
+      <tr><td>D8</td><td>用户调研 n=306，中美欧各约 1/3</td><td>用户调研</td><td>2026 H1</td><td>原报告 §四；问卷与抽样见原报告附录 B</td></tr>
+      <tr><td>D9</td><td>选择首要原因：记灵 = 便宜 78%；Lumina = “安静、专注、不打扰” 64%</td><td>用户调研</td><td>2026 H1</td><td>原报告 §四</td></tr>
+      <tr><td>D10</td><td>记灵流失用户 42%：“功能太杂，找不到重点，越用越焦虑”</td><td>流失访谈（12 条逐字稿）</td><td>2026 H1</td><td>原报告 §四；逐字稿见原报告附录 C</td></tr>
+      <tr><td>D11</td><td>Lumina 复购理由 top1“它不试图做所有事”，出现于 51% 开放题</td><td>用户调研</td><td>2026 H1</td><td>原报告 §四</td></tr>
+      <tr><td>D12</td><td>付费意愿中位数 $9-15/月；Lumina 用户愿付 $28+ 的比例 = 整体均值 3.2 倍</td><td>用户调研</td><td>2026 H1</td><td>原报告 §四</td></tr>
+      <tr><td>D13</td><td>开放题词频 top3：记灵“便宜/杂/卡”；Lumina“贵/专注/值”</td><td>用户调研</td><td>2026 H1</td><td>原报告 §四</td></tr>
+      <tr><td>D14</td><td>记灵买量驱动：CAC ¥18，LTV/CAC 0.9（倒挂）</td><td>渠道监测</td><td>2026-06</td><td>原报告 §五</td></tr>
+      <tr><td>D15</td><td>Lumina 口碑与自然增长（“几乎零投放”为原报告口径），LTV/CAC 6.3</td><td>渠道监测</td><td>2026-06</td><td>原报告 §五</td></tr>
+      <tr><td>D16</td><td>四家均于 2026 上半年发布 AI 摘要功能</td><td>桌面研究</td><td>2026 H1</td><td>原报告 §六</td></tr>
+    </tbody>
+  </table>
+  <p class="fine">原报告 =《AI 笔记应用竞品调研报告（2026 H1）》（inputs/competitive-research.md）；其附录 A–D 依次为：功能矩阵全表（41 项维度）、问卷与开放题全文（n=306，含抽样说明）、流失访谈提纲与 12 条逐字稿、数据来源清单与监测口径说明。</p>
+
+  <h3>A2 · 方法论与样本</h3>
+  <p>本页为原报告的 100→1 浓缩（归纳向上，非摘要删减）：桌面研究 + 用户调研 + 第三方监测三源汇总。用户调研 n=306，中美欧各约 1/3；留存、转化、NPS 为 2026-06 第三方监测口径；定价为 2026-06 官网标价。原报告章节结构未保留，结论经重新归纳，可经 D# 锚点回原文逐项 crosscheck。</p>
+
+  <h3>A3 · 支撑数据组：四家竞品一览（定价 × 渠道 × 单位经济）</h3>
+  <table>
+    <thead><tr><th>竞品</th><th>免费版</th><th>付费定价</th><th>增长驱动</th><th>单位经济</th></tr></thead>
+    <tbody>
+      <tr><td>记灵</td><td>有（全功能限速）</td><td>¥6/月</td><td>买量驱动</td><td>CAC ¥18；LTV/CAC 0.9（倒挂）(D14)</td></tr>
+      <tr><td>NoteFlow</td><td>有（限 3 本笔记）</td><td>$12/月</td><td>PLG + 模板市场生态*</td><td>—</td></tr>
+      <tr><td>MindScribe</td><td>无</td><td>$19/月 + AI 用量加购</td><td>销售驱动，主攻中大型团队*</td><td>—</td></tr>
+      <tr><td>Lumina</td><td>无</td><td>€28/月（另有团队版）</td><td>口碑自然增长*</td><td>LTV/CAC 6.3 (D15)</td></tr>
+    </tbody>
+  </table>
+  <p class="fine">* “几乎零投放”、PLG/销售驱动均为原报告 §五 定性描述（无量化数据）。功能数 × NPS：MindScribe 41 项 → NPS 33，Lumina 19 项 → NPS 61 (D7)，41 项功能维度全表见原报告附录 A；定价细节见溯源表 D3。</p>
+</div>
+
+</body>
+</html>

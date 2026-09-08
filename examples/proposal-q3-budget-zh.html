@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--
+  one-pager · T1 瑞士蓝本 reference implementation (style-system.md §4 T1; A4 mechanics in references/typography.md)
+  Self-contained: no external fonts, no external images (base64 only), no JS.
+  Injection points are marked with FILL comments. Keep the CSS untouched.
+  Structure: .page (exactly one A4 content page) + .appendix (own page, free-format).
+
+  本页声明（Phase 2 路由）：
+    模板 = T1 瑞士蓝本（C1 严谨理性 / S1 网格骨架）
+    皮肤 = 亮底 #fafaf8 · 单 accent IKB #002FA7 · 全无衬线（系统栈，typography.md 声明的 T1 display 偏差）
+           · 直角 · 装饰 = hairline + 7px accent 方块
+    密度 = 说服汇报型（中高密度，≤5 信息组）
+    叙事 = 100→1 浓缩 · 决策行动分叉 · Proposal 五段式（narrative-methodology.md §5.4）
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Q3 获客一页纸 · 砍掉信息流，转投裂变</title>
+<style>
+  :root {
+    --paper: #fafaf8; --grey-1: #f0f0ee; --grey-2: #d4d4d2; --grey-3: #737373; --ink: #0a0a0a;
+    --accent: #002FA7; /* one of: #002FA7 | #FF6B35 | #FFD500 (non-text) | #C5E803 (non-text) */
+    --sans: "Helvetica Neue", Helvetica, "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "PingFang SC", Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--grey-1); }
+  body { font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+
+  /* ---------- header ---------- */
+  .kicker {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  .title { font-size: 54px; font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-top: 16px; }
+  .deck { font-size: 14px; font-weight: 400; color: var(--grey-3); line-height: 1.6; margin-top: 10px; max-width: 62ch; }
+  .rule-strong { border: 0; border-top: 2px solid var(--ink); margin: 22px 0 24px; }
+
+  /* ---------- body ---------- */
+  .lead {
+    font-size: 15.5px; font-weight: 400; line-height: 1.7;
+    border-left: 3px solid var(--accent); padding-left: 18px; margin-bottom: 24px; max-width: 62ch;
+  }
+  section { margin-bottom: 24px; }
+  .sec-label {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .sec-label::before { content: ""; width: 7px; height: 7px; background: var(--accent); flex: none; }
+  .sec-label span.en { text-transform: none; letter-spacing: 0; } /* optional English gloss inside label */
+  p { font-size: 13.5px; line-height: 1.78; max-width: 46em; }
+  p + p { margin-top: 8px; }
+  p .num { font-weight: 500; } /* figures get weight, not color */
+
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 18px 0 24px; }
+  .row.two { grid-template-columns: repeat(2, 1fr); }
+  .metric .v { font-size: 38px; font-weight: 200; line-height: 1.1; }
+  .metric .v.accent { color: var(--accent); } /* text-accent only with #002FA7 / #FF6B35 */
+  .metric .l { font-size: 10.5px; color: var(--grey-3); margin-top: 6px; line-height: 1.5; }
+
+  figure { margin: 18px 0 24px; border-top: 1px solid var(--grey-2); border-bottom: 1px solid var(--grey-2); padding: 10px 0; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-family: var(--mono); font-size: 10px; color: var(--grey-3); margin-top: 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; }
+  thead th {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; color: var(--grey-3);
+    text-align: left; padding: 6px 10px 6px 0; border-top: 1px solid var(--grey-2);
+    border-bottom: 1px solid var(--grey-2); letter-spacing: 0.05em;
+  }
+  tbody td { font-size: 12px; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--grey-2); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.n, th.n { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+
+  .footnote { font-size: 10.5px; color: var(--grey-3); line-height: 1.6; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--grey-2); }
+
+  .page-flex { display: flex; flex-direction: column; height: 100%; }
+  .page-flex .body { flex: 1; }
+
+  /* ---------- appendix: its own A4 page ---------- */
+  .appendix {
+    width: 794px; min-height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); break-before: page;
+  }
+  .appendix h3 { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-3); margin: 22px 0 10px; }
+  .appendix h3:first-of-type { margin-top: 0; }
+  .appendix p, .appendix li { font-size: 11.5px; line-height: 1.65; }
+  .appendix ul { padding-left: 18px; }
+  .appendix td { font-size: 11px; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: var(--paper); }
+    .page, .appendix { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE ONE (the one-pager body — must fit 1123px) ==================== -->
+<div class="page">
+  <div class="page-flex">
+
+    <header>
+      <div class="kicker">
+        <div>PROPOSAL · Q3 获客实验 → Q4 预算重分配</div>
+        <div>2026-09-11 管理层评审 · 增长团队</div>
+      </div>
+      <h1 class="title">砍掉信息流，转投裂变</h1>
+      <p class="deck">Q4 获客预算重分配提案（试点）· 基于 2026 Q3 三渠道结算数据</p>
+      <hr class="rule-strong">
+    </header>
+
+    <div class="body">
+      <p class="lead">提请管理层批准（seek final decision）：Q4 停投信息流，<span class="num">42 万元</span> (D1) 转投私域裂变并阶梯放量；同等总预算 (D11) 下，综合单注册成本 <span class="num">75 元</span> (D12) → <span class="num">55 元以内</span> (D13)。依据与反方问答见附页。</p>
+
+      <div class="row">
+        <div class="metric"><div class="v">¥135.5</div><div class="l">信息流 · 单注册成本 (D7)</div></div>
+        <div class="metric"><div class="v">¥75.0</div><div class="l">SEO 内容 · 单注册成本 (D9)</div></div>
+        <div class="metric"><div class="v accent">¥36.7</div><div class="l">私域裂变 · 单注册成本 (D8)</div></div>
+      </div>
+
+      <section>
+        <div class="sec-label">01 · WHAT WE OBSERVED <span class="en">发现</span></div>
+        <p>Q3 结算数据 (D1–D6) 的诊断：预算压在单价最贵的渠道。(a) 效率断层：信息流单注册成本是裂变的 <span class="num">3.7 倍</span> (D7, D8, D10)；(b) 错配：信息流占 <span class="num">61%</span> 预算只换 <span class="num">34%</span> 注册，裂变以 <span class="num">26%</span> 换 <span class="num">53%</span> (D11)；(c) SEO 单价恰为综合均值 (D9, D12)，不动；(d) 裂变 <span class="num">4,900</span> 注册为最大单一来源 (D4)，但 18 万 (D3) 即其历史最大投放量，放量后边际成本未测；(e) 留存与转化无数据，结论仅基于成本与注册量（待验证）。</p>
+      </section>
+
+      <section>
+        <div class="sec-label">02 · PROPOSED SOLUTION <span class="en">方案</span></div>
+        <p><span class="num">阶段一 · 关停（10 月第 1 周）</span>：[1] 信息流全量停投，结清 Q3 尾款，人群包与素材归档备回滚 (Owner: 投放)。</p>
+        <p><span class="num">阶段二 · 转投放量（10–12 月）</span>：[2] 裂变季度预算 18 万 → <span class="num">60 万</span>（D3＋D1），按月 15/20/25 万阶梯放量、档末复核边际单价；即使边际单价升至 55 元，42 万仍可换约 <span class="num">7,600 注册</span>，多于信息流 Q3 的 3,100 (D2, D14) (Owner: 私域运营)。</p>
+        <p><span class="num">阶段三 · 验证护栏（与放量并行）</span>：[3] 统一三渠道注册口径，上线 30 日留存与首单转化追踪，Q4 末以质量数据复核本决策 (Owner: 数据)；[4] SEO 维持 9 万 (D5)，Q4 末以留存与长尾数据单独评审 (Owner: 内容)。</p>
+      </section>
+
+      <section>
+        <div class="sec-label">03 · NON-GOALS <span class="en">边界</span></div>
+        <p>本页不解决：① 注册质量归因（(e) → [3]）；② 非效果类预算取舍；③ 总预算规模（默认 69 万量级，D11）。</p>
+      </section>
+
+      <section>
+        <div class="sec-label">04 · NEXT STEPS <span class="en">批准后</span></div>
+        <p>Upon approval：10 月第 1 周执行 [1]，[2] 首档 15 万元同步上线；前 2 个月每月复盘边际单价与 30 日留存，之后转季度。Subject to decision：任一档边际单价破 75 元 (D12) 即冻结放量，余量转投 SEO 或重启信息流测试。</p>
+        <p style="text-align: right; font-family: var(--mono); font-size: 10.7px; letter-spacing: 0.14em; color: var(--grey-3); margin-top: 12px;">THE END</p>
+      </section>
+    </div>
+
+    <p class="footnote">正文锚点 (D1)–(D14) ↔ 附页 A1 溯源表一一对应（含渠道明细）；反方 FAQ A2 · 解-题映射 A3；D1–D6 建议会前由 Finance 交叉复核。</p>
+
+  </div>
+</div>
+
+<!-- ==================== APPENDIX (evidence pack — its own A4 page) ==================== -->
+<div class="appendix">
+  <div class="kicker" style="margin-bottom:18px;"><div>APPENDIX · 证据包</div><div>PAGE 2</div></div>
+
+  <h3>A1 · 数据溯源表（含渠道明细；锚点 / 数据值 / 来源 / 时间·版本 / 可复核路径）</h3>
+  <table>
+    <thead><tr><th>锚点</th><th>数据值</th><th>来源</th><th>时间</th><th>可复核路径</th></tr></thead>
+    <tbody>
+      <tr><td>D1</td><td>信息流投放花费 42 万元</td><td>Q3 结算（用户提供）</td><td>2026 Q3</td><td>投放后台 × Finance 结算单</td></tr>
+      <tr><td>D2</td><td>信息流注册 3,100 个</td><td>同 D1</td><td>2026 Q3</td><td>投放平台报表，口径＝完成注册</td></tr>
+      <tr><td>D3</td><td>私域裂变花费 18 万元</td><td>Q3 结算（用户提供）</td><td>2026 Q3</td><td>裂变台账 × Finance 结算单</td></tr>
+      <tr><td>D4</td><td>私域裂变注册 4,900 个</td><td>同 D3</td><td>2026 Q3</td><td>裂变后台，口径＝完成注册</td></tr>
+      <tr><td>D5</td><td>SEO 内容投入 9 万元</td><td>Q3 结算（用户提供）</td><td>2026 Q3</td><td>内容团队结算 × Finance</td></tr>
+      <tr><td>D6</td><td>SEO 注册 1,200 个</td><td>同 D5</td><td>2026 Q3</td><td>站点分析（自然流量注册）</td></tr>
+      <tr><td>D7</td><td>信息流单注册成本 135.5 元</td><td>计算值 D1÷D2</td><td>—</td><td>420,000 ÷ 3,100</td></tr>
+      <tr><td>D8</td><td>裂变单注册成本 36.7 元</td><td>计算值 D3÷D4</td><td>—</td><td>180,000 ÷ 4,900</td></tr>
+      <tr><td>D9</td><td>SEO 单注册成本 75.0 元</td><td>计算值 D5÷D6</td><td>—</td><td>90,000 ÷ 1,200</td></tr>
+      <tr><td>D10</td><td>信息流单价＝裂变 × 3.7</td><td>计算值 D7÷D8</td><td>—</td><td>135.5 ÷ 36.7 ≈ 3.69</td></tr>
+      <tr><td>D11</td><td>合计 69 万 / 9,200 注册</td><td>D1–D6 汇总</td><td>2026 Q3</td><td>份额＝渠道值 ÷ 合计</td></tr>
+      <tr><td>D12</td><td>综合单注册成本 75.0 元</td><td>计算值 D11</td><td>—</td><td>690,000 ÷ 9,200</td></tr>
+      <tr><td>D13</td><td>Q4 目标：综合单价 ≤ 55 元</td><td>提案设定（估计值）</td><td>2026 Q4</td><td>条件：边际 ≤ 50 元；敏感性 A2-1</td></tr>
+      <tr><td>D14</td><td>42 万转投预期 ≈ 7,600 注册</td><td>估计值 420,000÷55</td><td>—</td><td>区间 7,600–11,400（55→36.7 元）</td></tr>
+    </tbody>
+  </table>
+  <p>D11 份额读法（预算 → 注册）：信息流 61%→34% · 裂变 26%→53% · SEO 13%→13%；渠道明细即 D1–D9 各行。</p>
+
+  <h3>A2 · 反方 FAQ</h3>
+  <p><span class="num">A2-1 裂变吃得下 3.3 倍预算吗？</span>——阶梯逐档验证＋75 元冻结线 (D12)；敏感性：边际 36.7/45/50/55 元 → 综合约 39/48/52/57 元。</p>
+  <p><span class="num">A2-2 裂变注册质量会更差吗？</span>——质量数据缺失（(e)）；[3] 追踪 30 日留存与首单转化，劣于信息流即触发复审。</p>
+  <p><span class="num">A2-3 为什么不保留部分信息流？</span>——每留 1 元＝3.7 倍机会成本 (D10)；人群包已归档（[1]），2 周内可重启。</p>
+  <p><span class="num">A2-4 砍掉后总注册量会跌吗？</span>——预计 Q4 注册 12,100–17,500（估计），不低于 Q3 的 9,200 (D11)。</p>
+  <p><span class="num">A2-5 口径可信吗？</span>——三渠道均按“完成注册”计（D2/D4/D6）；D1–D6 建议会前由 Finance 复核（路径见 A1）。</p>
+
+  <h3>A3 · 解-题映射表（[方案] × (问题)）</h3>
+  <table>
+    <thead><tr><th>方案</th><th>(a) 效率断层</th><th>(b) 预算错配</th><th>(c) SEO 定位</th><th>(d) 规模未测</th><th>(e) 质量盲区</th></tr></thead>
+    <tbody>
+      <tr><td>[1] 信息流停投</td><td>●</td><td>●</td><td></td><td></td><td></td></tr>
+      <tr><td>[2] 裂变阶梯放量</td><td>●</td><td>●</td><td></td><td>●</td><td></td></tr>
+      <tr><td>[3] 口径与质量追踪</td><td></td><td></td><td></td><td></td><td>●</td></tr>
+      <tr><td>[4] SEO 维持评审</td><td></td><td></td><td>●</td><td></td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+{
+  "skill_name": "one-pager",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我刚读完《Working Backwards》做了些笔记（见 notes.md），帮我把它读薄成一页纸。下周部门读书会上我要用 10 分钟分享，同事都是产品和技术背景，重点讲我们能直接借鉴的做法，不用面面俱到。",
+      "expected_output": "Chinese one-pager, 100→1 浓缩 protocol, 学习复述 fork, Book Memo house pattern: 标题行（书名+作者+推荐分）→ 一句话定位 → 作者的问题 → 骨架 X 光（金字塔归纳重排，非目录照抄）→ 术语表 ≤5 → 惊讶点 punchlines（指令式短句，Punchline 化改写）→ What of it（对产品/技术团队的具体行动改变）。Appendix carries 论据地图（哪章支撑哪个结论）+ 数据溯源表（书中数据记原文位置）+ remaining notes. Body within 700 Chinese characters; delivered as a self-contained A4 HTML file plus PDF export with 1 content page + appendix. Passes Feynman variant of Q1 (60-second retelling without book jargon).",
+      "assertions": [
+        "Output is a self-contained single HTML file with exactly 1 A4 content page + appendix page(s)",
+        "Follows Book Memo house pattern: 标题行含推荐分, 一句话定位, 骨架 X 光, 惊讶点 punchlines, What of it",
+        "骨架 X 光 is pyramid-regrouped, not a copy of the source's chapter order",
+        "Body numbers carry (D#) anchors resolving bidirectionally into an appendix traceability table",
+        "Body contains no weasel words; no bullet-stacked argumentation",
+        "No The End terminator (Proposal-fork element must NOT appear); Owner labels are fork-wide per methodology L2 and MAY appear",
+        "Body passes the humanize checklist (references/humanize.md): no rhythm-padding three-item lists, ≤1 label-colon lead per section, ≤2 dashes per page, no quotable-sounding aphorisms, varied sentence rhythm",
+        "Body passes the first-read rule (references/humanize.md): jargon glossed or replaced on first appearance, acronyms expanded, no back-references, parseable in one linear pass by a reader new to the source book"
+      ],
+      "files": ["files/notes.md"]
+    },
+    {
+      "id": 2,
+      "prompt": "老板让我把 Q3 获客实验的结果整理成一页纸汇报，周五管理层会用。背景是这样：我们 Q3 跑了三个渠道——信息流投放花了 42 万带来 3100 注册、私域裂变活动花了 18 万带来 4900 注册、SEO 内容投入 9 万带来 1200 注册。我的结论是砍掉信息流、把预算转给裂变。帮我写这页纸。",
+      "expected_output": "Chinese one-pager, 100→1 浓缩 protocol, 决策行动 fork, Proposal 五段式: 标题行（动作式+范围限定词+日期）→ Purpose 首段 BLUF（决策旗标 seek final decision + 量化目标 from→to）→ What we observed（(a)-(e) 关键因子内嵌渠道硬数据）→ Proposed solution（[N] 项：名称+现状+做法+(Owner: 角色)）→ Next Steps（Upon approval 行动 + 治理节奏）→ The End. Every body number carries a (D#) anchor; appendix has the five-column data traceability table (锚点/数据值/来源/时间版本/可复核路径). Single-recommendation (no option comparison table); functional section headings (not Action Titles) per the fork's heading convention. No weasel words.",
+      "assertions": [
+        "Output is a self-contained single HTML file with exactly 1 A4 content page + appendix page(s)",
+        "Follows Proposal 五段式: Purpose BLUF with decision flag, What we observed with (a)-(e), Proposed solution with [N] items, Next Steps with governance cadence, The End terminator",
+        "Action items carry (Owner: 角色) labels",
+        "Every body number carries a (D#) anchor; appendix five-column traceability table resolves bidirectionally",
+        "Single recommendation, no option-comparison table in body",
+        "Body contains no weasel words; arguments in full sentences with 行内编号 [N] instead of bullets",
+        "Body passes the humanize checklist (references/humanize.md): no rhythm-padding three-item lists, ≤1 label-colon lead per section, ≤2 dashes per page, no quotable-sounding aphorisms, varied sentence rhythm",
+        "Body passes the first-read rule (references/humanize.md): jargon glossed or replaced on first appearance, acronyms expanded, no back-references, parseable in one linear pass by an executive who never saw the raw data"
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Turn this market research report (market_research.md) into a one-page brief for the exec team. They will read it in 5 minutes before a pricing decision meeting, so the page must end with a clear recommendation and the 2-3 numbers that justify it.",
+      "expected_output": "English one-pager, 100→1 浓缩 protocol, 决策行动 fork (reader's next action is a pricing decision), Proposal 五段式 house pattern: Purpose BLUF with decision flag and quantified goal → observed factors with (a)-(e) numbering → proposed solution with [N] items and Owner labels → Next Steps → The End. The 2-3 decision numbers carry (D#) anchors; appendix holds methodology, detailed findings, and the traceability table. Body within 500 English words.",
+      "assertions": [
+        "Output is in English, self-contained single HTML file with 1 A4 content page + appendix",
+        "Proposal 五段式 present: Purpose BLUF with decision flag, observed factors (a)-(c) or more (3-7 range), solutions [N] with Owner labels, Next Steps, The End",
+        "Page ends on the recommendation with the 2-3 justifying numbers (122% NRR, +$1.9M ARR, 41% lost-deal reason)",
+        "Decision numbers carry (D#) anchors resolving into appendix traceability table",
+        "Body within ~500 English words, no weasel words",
+        "Body passes the humanize checklist (references/humanize.md): no rhythm-padding three-item lists, ≤1 label-colon lead per section, ≤2 dashes per page, no quotable-sounding aphorisms, varied sentence rhythm",
+        "Body passes the first-read rule (references/humanize.md): jargon glossed or replaced on first appearance, acronyms expanded, no back-references, parseable in one linear pass"
+      ],
+      "files": ["files/market_research.md"]
+    },
+    {
+      "id": 4,
+      "prompt": "这份竞品调研报告（见 competitive-research.md）发出去根本没人看完，领导说太长了重点也不突出。帮我压成一页，让人 3 分钟抓住核心结论就行。",
+      "expected_output": "Chinese one-pager triggered by the pain-point phrasing (too long, no highlights) without any explicit 'one-pager' keyword. 100→1 浓缩 protocol; off-table material (竞品分析) routed by reader's next action — here 3 分钟抓住核心结论 routes to 信服洞察 fork, Insight Page house pattern: Action Title 即结论（反直觉表述）→ 结论块（主张+置信度+数据基础）→ SCQ 压缩开场 → 主图一图一结论（图题写结论不写指标名）→ 反方预案 → So What. Weasel words zero tolerance (Q4 strictest mode). Delivered as self-contained HTML with one content page; original detail preserved in appendix.",
+      "assertions": [
+        "Output is a self-contained single HTML file with 1 A4 content page + appendix",
+        "Follows Insight Page house pattern: Action Title as conclusion, 结论块 with confidence/data basis, SCQ opening, one chart one conclusion, 反方预案, So What",
+        "Chart title states a conclusion, not a metric name; direct labeling not legends",
+        "BODY is weasel-word free (zero tolerance; appendix may quote original source phrasing for traceability)",
+        "No The End terminator (Proposal-fork element must NOT appear)",
+        "Body passes the humanize checklist (references/humanize.md): no rhythm-padding three-item lists, ≤1 label-colon lead per section, ≤2 dashes per page, no quotable-sounding aphorisms, varied sentence rhythm",
+        "Body passes the first-read rule (references/humanize.md): jargon glossed or replaced on first appearance, acronyms expanded, no back-references, parseable in one linear pass by a reader new to the research"
+      ],
+      "files": ["files/competitive-research.md"]
+    }
+  ]
+}

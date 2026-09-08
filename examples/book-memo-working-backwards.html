@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--
+  one-pager · T1 瑞士蓝本 reference implementation (style-system.md §4 T1; A4 mechanics in references/typography.md)
+  Self-contained: no external fonts, no external images (base64 only), no JS.
+  Structure: .page (exactly one A4 content page) + .appendix (own page, free-format).
+
+  Phase-2 路由声明（style-system.md 要求：写 HTML 前声明模板编号 + 皮肤参数）
+  模板：T1 瑞士蓝本（C1 严谨理性 ← 产品/技术读书会、机制类内容）
+  骨架：S1 网格系统 · 皮肤：亮底 #fafaf8 / 单 accent 安全橙 #FF6B35（四选一之内，取亚马逊品牌色的编辑化呼应）
+  / 全无衬线（typography.md 声明的系统栈偏差）/ 直角 / 装饰语言：hairline + 7px 方块（R6，仅此一对）
+  密度：读薄型低密度 —— 3 个主信息组（骨架 X 光 / 可直接搬走的做法 / What of it），术语表降级附页
+  叙事：100→1 浓缩 · 学习复述分叉 · Book Memo 房屋模式（narrative-methodology.md §5.5）
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>Working Backwards · 一页读书备忘录</title>
+<style>
+  :root {
+    --paper: #fafaf8; --grey-1: #f0f0ee; --grey-2: #d4d4d2; --grey-3: #737373; --ink: #0a0a0a;
+    --accent: #FF6B35; /* one of: #002FA7 | #FF6B35 | #FFD500 (non-text) | #C5E803 (non-text) */
+    --sans: "Helvetica Neue", Helvetica, "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "PingFang SC", Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--grey-1); }
+  body { font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+
+  /* ---------- header ---------- */
+  .kicker {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  .title { font-size: 54px; font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-top: 16px; }
+  .deck { font-size: 14px; font-weight: 400; color: var(--grey-3); line-height: 1.6; margin-top: 10px; max-width: 62ch; }
+  .rule-strong { border: 0; border-top: 2px solid var(--ink); margin: 22px 0 24px; }
+
+  /* ---------- body ---------- */
+  .lead {
+    font-size: 15.5px; font-weight: 400; line-height: 1.7;
+    border-left: 3px solid var(--accent); padding-left: 18px; margin-bottom: 24px; max-width: 62ch;
+  }
+  section { margin-bottom: 24px; }
+  .sec-label {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .sec-label::before { content: ""; width: 7px; height: 7px; background: var(--accent); flex: none; }
+  .sec-label span.en { text-transform: none; letter-spacing: 0; } /* optional English gloss inside label */
+  p { font-size: 13.5px; line-height: 1.78; max-width: 46em; }
+  p + p { margin-top: 8px; }
+  p .num { font-weight: 500; } /* figures get weight, not color */
+
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 18px 0 24px; }
+  .row.two { grid-template-columns: repeat(2, 1fr); }
+  .metric .v { font-size: 38px; font-weight: 200; line-height: 1.1; }
+  .metric .v.accent { color: var(--accent); } /* text-accent only with #002FA7 / #FF6B35 */
+  .metric .l { font-size: 10.5px; color: var(--grey-3); margin-top: 6px; line-height: 1.5; }
+
+  figure { margin: 18px 0 24px; border-top: 1px solid var(--grey-2); border-bottom: 1px solid var(--grey-2); padding: 10px 0; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-family: var(--mono); font-size: 10px; color: var(--grey-3); margin-top: 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; }
+  thead th {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; color: var(--grey-3);
+    text-align: left; padding: 6px 10px 6px 0; border-top: 1px solid var(--grey-2);
+    border-bottom: 1px solid var(--grey-2); letter-spacing: 0.05em;
+  }
+  tbody td { font-size: 12px; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--grey-2); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.n, th.n { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+
+  .footnote { font-size: 10.5px; color: var(--grey-3); line-height: 1.6; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--grey-2); }
+
+  .page-flex { display: flex; flex-direction: column; height: 100%; }
+  .page-flex .body { flex: 1; }
+
+  /* ---------- appendix: its own A4 page ---------- */
+  .appendix {
+    width: 794px; min-height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); break-before: page;
+  }
+  .appendix h3 { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-3); margin: 22px 0 10px; }
+  .appendix h3:first-of-type { margin-top: 0; }
+  .appendix p, .appendix li { font-size: 11.5px; line-height: 1.65; }
+  .appendix ul { padding-left: 18px; }
+  .appendix td { font-size: 11px; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: var(--paper); }
+    .page, .appendix { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE ONE (the one-pager body — must fit 1123px) ==================== -->
+<div class="page">
+  <div class="page-flex">
+
+    <header>
+      <div class="kicker">
+        <div>BOOK MEMO · WORKING BACKWARDS</div>
+        <div>BRYAR &amp; CARR · 2026-08 读毕 · 部门读书会用</div>
+      </div>
+      <h1 class="title">客户至上靠机制，不靠口号</h1>
+      <p class="deck">两位任职十余年的亚马逊高管的内幕手册；本页只提取产品/技术团队可直接借鉴的做法。推荐分 7/10，能直接照做的机制密度高，带项目的人收益最大。</p>
+      <hr class="rule-strong">
+    </header>
+
+    <div class="body">
+      <p class="lead">这是一本实践手册：它回答"亚马逊凭什么变大之后还能持续发明、执行不变形"——答案是机制，不是天才。我们的问题：机制怎么降级？</p>
+
+      <section>
+        <div class="sec-label">01 · 骨架 X 光 <span class="en">SKELETON</span></div>
+        <p><strong>一条主线（客户至上）串起五层机制，每层各管一个问题，可单独借用。</strong></p>
+        <table>
+          <thead><tr><th>层</th><th>管什么</th><th>机制装置</th><th>笔记小节</th></tr></thead>
+          <tbody>
+            <tr><td>立项</td><td>做什么</td><td>PR/FAQ：从"发布日的新闻稿"倒推</td><td>Ch1</td></tr>
+            <tr><td>沟通</td><td>怎么想清楚</td><td>叙事备忘录替代 PPT，会前静读</td><td>Ch2</td></tr>
+            <tr><td>组织</td><td>谁来做</td><td>单线程领导；两个披萨团队</td><td>Ch4</td></tr>
+            <tr><td>人才</td><td>谁进来</td><td>Bar Raiser（跨部门面试官）一票否决</td><td>Ch5</td></tr>
+            <tr><td>运营</td><td>怎么持续</td><td>输入/输出指标＋周度回顾；Type 1/2 决策（不可逆/可逆）</td><td>指标·决策</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <div class="sec-label">02 · 可直接搬走的做法 <span class="en">PRACTICES</span></div>
+        <p><strong>五层机制各挑一个能直接搬走的做法；前两个本周就能试。</strong></p>
+        <p><strong>[1] 立项｜先写 PR/FAQ：</strong>标题＝产品＋目标客户＋核心利益，两套 FAQ（客户/内部）拷问；写不出＝主张未成型。Kindle 的 PR 就一句："60 秒内下载任何书" <span class="num">(D5)</span>。</p>
+        <p><strong>[2] 沟通｜会议改成"先读后议"：</strong>用正文 ≤6 页的叙事备忘录替代 PPT <span class="num">(D1)(D2)</span>，会前静读 15–20 分钟 <span class="num">(D3)</span>，完整句子逼你补上"因为…所以…"。</p>
+        <p><strong>[3] 组织｜关键项目配单线程领导：</strong>作者观察，兼职 leader 带的项目要么烂尾、要么平庸；团队不够大时退一步，关键项目有唯一 owner。</p>
+        <p><strong>[4] 运营｜周会盯输入指标：</strong>输出是结果、管不动；管理动作落在可控的输入上，异常追到根因才能离会。</p>
+        <p><strong>[5] 决策｜先分可逆性再定快慢：</strong>可逆的凑齐 70% 信息就拍板 <span class="num">(D6)</span>，等 90% 已太慢；不可逆的才值得慢。</p>
+      </section>
+
+      <section>
+        <div class="sec-label">03 · 读完改变什么 <span class="en">WHAT OF IT</span></div>
+        <p><strong>读完最该改三件事：</strong>对齐靠文档、不靠会议；立项门槛前移（排期前先交一页 PR/FAQ）；周会只过可控的输入指标。最反直觉的是：这本书把"做什么"当成最贵、最该慢的决策。</p>
+      </section>
+    </div>
+
+    <p class="footnote">文中 (D#) 均出自读书笔记；附页有溯源表、论据地图、术语速查与剩余笔记（含人才层为何不搬）。</p>
+
+  </div>
+</div>
+
+<!-- ==================== APPENDIX (evidence pack — 论据地图 / 溯源表 / 术语 / 金句 / 剩余笔记 / 反方预案) ==================== -->
+<div class="appendix">
+  <div class="kicker" style="margin-bottom:18px;"><div>APPENDIX</div><div>论据地图 · 溯源 · 术语 · 金句 · 剩余笔记</div></div>
+
+  <h3>A1 · 论据地图（笔记小节 → 本页结论）</h3>
+  <table>
+    <thead><tr><th>笔记小节</th><th>支撑的本页位置</th><th>关键证据</th></tr></thead>
+    <tbody>
+      <tr><td>Ch1 PR/FAQ</td><td>骨架·立项层；做法[1]</td><td>PR 结构；FAQ 两套；Kindle 等 4 案例；写不出 PR 不立项</td></tr>
+      <tr><td>Ch2 叙事文化</td><td>骨架·沟通层；做法[2]；What of it</td><td>禁 PPT 邮件；6 页规矩；study hall；30 稿</td></tr>
+      <tr><td>Ch4 单线程</td><td>骨架·组织层；做法[3]</td><td>专职负责人；兼职项目烂尾观察；两个披萨团队</td></tr>
+      <tr><td>Ch5 招聘</td><td>骨架·人才层（不搬，见 A6）</td><td>Bar Raiser 否决权；行为面试；招错人成本数倍</td></tr>
+      <tr><td>指标文化</td><td>骨架·运营层；做法[4]</td><td>输入/输出两分；WBR 周节奏；异常追根因才能离会</td></tr>
+      <tr><td>决策速度</td><td>骨架·运营层；做法[5]</td><td>Type 1/2；70% 规则；disagree and commit</td></tr>
+      <tr><td>客户至上＋金句</td><td>标题主张；主线</td><td>空椅子；客户需求倒推 vs skills forward；金句③</td></tr>
+    </tbody>
+  </table>
+
+  <h3>A2 · 数据溯源表</h3>
+  <p>数据均转引自读书笔记 inputs/notes.md（2026-08 读毕），"L#" 为该文件行号。</p>
+  <table>
+    <thead><tr><th>锚点</th><th>数据值</th><th>来源</th><th>时间/版本</th><th>可复核路径</th></tr></thead>
+    <tbody>
+      <tr><td>D1</td><td>2004 年全司邮件禁 PPT，改六页叙事备忘录</td><td>笔记 §Ch2</td><td>笔记 2026-08；原书 2021 英文版</td><td>notes.md L7</td></tr>
+      <tr><td>D2</td><td>6-pager 正文上限 6 页，附录不限</td><td>笔记 §Ch2</td><td>同上</td><td>notes.md L9</td></tr>
+      <tr><td>D3</td><td>会前静默阅读 15–20 分钟（study hall）</td><td>笔记 §Ch2</td><td>同上</td><td>notes.md L10</td></tr>
+      <tr><td>D5</td><td>Kindle 新闻稿核心承诺"60 秒内下载任何书"</td><td>笔记 §Ch1</td><td>同上</td><td>notes.md L19</td></tr>
+      <tr><td>D6</td><td>70% 信息即可决策，90% 已太慢</td><td>笔记 §决策速度</td><td>同上</td><td>notes.md L44</td></tr>
+    </tbody>
+  </table>
+
+  <h3>A3 · 术语速查（因篇幅自正文降级至此，一行一词一义）</h3>
+  <p>Working Backwards＝从"发布日的新闻稿"倒推立项；6-pager＝正文上限 6 页的叙事备忘录，数据进附录；Single-Threaded Leader＝关键项目专职负责人；Bar Raiser＝持一票否决权的跨部门面试官；输入/输出指标＝可控过程项/结果项，管理只落在输入。</p>
+
+  <h3>A4 · 金句（附页装饰锚点，至多三条）</h3>
+  <p>1. 好的备忘录没有捷径，它就是难写。　2. 我们不是靠 PPT 赚钱的。　3. 客户至上不是口号，是一套机制设计。</p>
+
+  <h3>A5 · 未进正文的剩余笔记</h3>
+  <ul>
+    <li>客户至上：会议室放一把空椅子代表客户在场；飞轮＝低价→更多客户→更多卖家→选品丰富→体验更好→更低价。</li>
+    <li>节俭与 Day 1：门桌文化，省下的钱投客户体验；"Your margin is my opportunity"；Day 2＝停滞→无关紧要→痛苦的衰退。</li>
+    <li>叙事训练：新员工头几个月写 memo 是常态，写不好会被反复打回（Ch2）。</li>
+  </ul>
+
+  <h3>A6 · 反方预案（读书会上可能被问）</h3>
+  <ul>
+    <li>"内部人写的，只有成功叙事？"——对，失败案例与代价笔记里没有；所以本页只主张"流程层可试"，不主张整套照搬。</li>
+    <li>"为什么不搬 Bar Raiser？"——它需要跨部门面试官池和足够的招聘量；小团队先用行为面试＋明确录用标准顶住。</li>
+    <li>"我们没有贝索斯，推得动吗？"——做法 [1][2][4][5] 都是单团队流程，不动组织架构就能试点。</li>
+  </ul>
+
+  <h3>A7 · 十分钟分享切分（给自己）</h3>
+  <p>0–3 分钟：主张＋骨架 X 光｜3–8 分钟：五个做法，重点 [1][2]｜8–10 分钟：What of it＋"哪一层我们先试？"</p>
+
+</div>
+
+</body>
+</html>

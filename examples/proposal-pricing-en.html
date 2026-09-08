@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--
+  one-pager · T1 瑞士蓝本 (style-system.md §4 T1 · S1 grid · C1 严谨理性)
+  Skin declaration: 亮底 #fafaf8 · 单 accent IKB #002FA7 (text-accent allowed) · 全无衬线
+  (system sans stack per typography.md declared portability deviation; weight ladder 200/400/500-600)
+  · 直角 · decoration pair = 1px hairlines + 7px accent squares (R6).
+  Scenario: 100→1 浓缩 · 决策行动 fork · Proposal 五段式 · 汇报型 density (R8, 4 info groups + metrics strip).
+  Self-contained: no external fonts, no external images, no JS.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TaskFlow Pricing Decision Brief — Adopt Hybrid Pricing</title>
+<style>
+  :root {
+    --paper: #fafaf8; --grey-1: #f0f0ee; --grey-2: #d4d4d2; --grey-3: #737373; --ink: #0a0a0a;
+    --accent: #002FA7; /* one of: #002FA7 | #FF6B35 | #FFD500 (non-text) | #C5E803 (non-text) */
+    --sans: "Helvetica Neue", Helvetica, "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "PingFang SC", Arial, sans-serif;
+    --mono: "SF Mono", "Cascadia Code", Consolas, "Roboto Mono", "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--grey-1); }
+  body { font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+
+  /* ---------- header ---------- */
+  .kicker {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; justify-content: space-between; gap: 16px;
+  }
+  .title { font-size: 54px; font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; margin-top: 16px; }
+  .deck { font-size: 14px; font-weight: 400; color: var(--grey-3); line-height: 1.6; margin-top: 10px; max-width: 62ch; }
+  .rule-strong { border: 0; border-top: 2px solid var(--ink); margin: 22px 0 24px; }
+
+  /* ---------- body ---------- */
+  .lead {
+    font-size: 15.5px; font-weight: 400; line-height: 1.7;
+    border-left: 3px solid var(--accent); padding-left: 18px; margin-bottom: 24px; max-width: 62ch;
+  }
+  section { margin-bottom: 24px; }
+  .sec-label {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--grey-3);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+  }
+  .sec-label::before { content: ""; width: 7px; height: 7px; background: var(--accent); flex: none; }
+  .sec-label span.en { text-transform: none; letter-spacing: 0; } /* optional English gloss inside label */
+  p { font-size: 13.5px; line-height: 1.78; max-width: 46em; }
+  p + p { margin-top: 8px; }
+  p .num { font-weight: 500; } /* figures get weight, not color */
+
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 18px 0 24px; }
+  .row.two { grid-template-columns: repeat(2, 1fr); }
+  .metric .v { font-size: 38px; font-weight: 200; line-height: 1.1; }
+  .metric .v.accent { color: var(--accent); } /* text-accent only with #002FA7 / #FF6B35 */
+  .metric .l { font-size: 10.5px; color: var(--grey-3); margin-top: 6px; line-height: 1.5; }
+
+  figure { margin: 18px 0 24px; border-top: 1px solid var(--grey-2); border-bottom: 1px solid var(--grey-2); padding: 10px 0; }
+  figure img { display: block; width: 100%; height: auto; }
+  figcaption { font-family: var(--mono); font-size: 10px; color: var(--grey-3); margin-top: 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; }
+  thead th {
+    font-family: var(--mono); font-size: 10.7px; font-weight: 500; color: var(--grey-3);
+    text-align: left; padding: 6px 10px 6px 0; border-top: 1px solid var(--grey-2);
+    border-bottom: 1px solid var(--grey-2); letter-spacing: 0.05em;
+  }
+  tbody td { font-size: 12px; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--grey-2); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.n, th.n { text-align: right; padding-right: 0; font-variant-numeric: tabular-nums; }
+
+  .footnote { font-size: 10.5px; color: var(--grey-3); line-height: 1.6; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--grey-2); }
+
+  .page-flex { display: flex; flex-direction: column; height: 100%; }
+  .page-flex .body { flex: 1; }
+
+  /* ---------- appendix: its own A4 page ---------- */
+  .appendix {
+    width: 794px; min-height: 1123px; margin: 24px auto; padding: 52px 56px;
+    background: var(--paper); color: var(--ink); break-before: page;
+  }
+  .appendix h3 { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--grey-3); margin: 22px 0 10px; }
+  .appendix h3:first-of-type { margin-top: 0; }
+  .appendix p, .appendix li { font-size: 11.5px; line-height: 1.65; }
+  .appendix ul { padding-left: 18px; }
+  .appendix td { font-size: 11px; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { background: var(--paper); }
+    .page, .appendix { margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE ONE (the one-pager body — must fit 1123px) ==================== -->
+<div class="page">
+  <div class="page-flex">
+
+    <header>
+      <div class="kicker">
+        <div>DECISION BRIEF · TASKFLOW PRICING · OCTOBER 2026</div>
+        <div>PRICING &amp; MONETIZATION TEAM · Q3 RESEARCH</div>
+      </div>
+      <h1 class="title">Adopt Hybrid Pricing</h1>
+      <hr class="rule-strong">
+    </header>
+
+    <div class="body">
+      <!-- Purpose · BLUF: decision request + decision flag + quantified target + reason -->
+      <p class="lead">We ask the executive team to approve Option C, hybrid pricing at <span class="num">$599/month plus $32/active user</span> (D1), for new accounts from Q1 2027, seeking your final decision today. The pilot behind it lifted NRR (net revenue retention) from 104% to <span class="num">122%</span> (D2). Our financial model projects <span class="num">+$1.9M ARR</span> (annual recurring revenue), <span class="num">+11%</span> (D3).</p>
+
+      <!-- What we observed: evidence + diagnosis + key factors (a)-(c) -->
+      <section>
+        <div class="sec-label">WHAT WE OBSERVED · DIAGNOSIS: PER-SEAT PRICING MISPRICES HOW CUSTOMERS BUY</div>
+        <p>(a) Customers pay for seats they never use — median utilization is <span class="num">61%</span> (D4), and 72% of surveyed admins rank dormant-seat billing a top-3 frustration (D5).</p>
+        <p>(b) The market has moved: win rate is <span class="num">28%</span> against usage-based rivals versus <span class="num">46%</span> against per-seat (D6), and pricing-model mismatch is now the #1 lost-deal reason, at <span class="num">41%</span> (D7).</p>
+        <p>(c) The 23-account pilot proved the fix — NRR <span class="num">122%</span> versus 104% control (D2), win rate <span class="num">+9pp</span> (D8), seat-admin tickets <span class="num">−61%</span> (D9). It also exposed two containable risks: bill surprise, fixed by caps and alerts rated 4.4/5 (D10), and ±14% monthly revenue variance (D11).</p>
+      </section>
+
+      <!-- Proposed solution: grouped by phase, [N] items with owners, expectations in phase heads -->
+      <section>
+        <div class="sec-label">PROPOSED SOLUTION · OPTION C, PHASED · THREE MOVES, SIX ACTIONS</div>
+        <p><strong>New accounts from Q1 2027</strong>: [1] publish the hybrid price book, $599/month plus $32/active user (D1) (Pricing); [2] build the usage-billing infrastructure, <span class="num">$480K</span> with a seven-month payback (D12) (Engineering). <strong>Migration through H2 2027</strong>, toward the 122% NRR benchmark (D2): [3] voluntary grandfathered waves, seats stay the default (Customer Success); [4] spending caps and threshold alerts on every usage-billed account (D10) (Product). <strong>Enterprise guardrail</strong>, protecting the 63% flat-contract requirement (D13): [5] flat annual stays the default, usage on request only, capped (Sales); [6] sales-comp re-territorying across two quarters pre-launch (Sales Ops, Finance).</p>
+        <p>Non-goals: no repricing of grandfathered accounts; the Enterprise flat-contract default stands; no packaging changes this cycle.</p>
+      </section>
+
+      <!-- Decision requested: next steps, then the page ends on the recommendation + its three numbers -->
+      <section>
+        <div class="sec-label">DECISION REQUESTED · APPROVE OPTION C, PHASED AS PROPOSED</div>
+        <p>Upon approval: [1]–[2] go live in Q1 2027; [3]–[4] run through H2 2027; [6] completes pre-launch over two quarters; governance monthly for two quarters, then quarterly.</p>
+        <div class="row">
+          <div class="metric"><div class="v accent">122%</div><div class="l">Pilot NRR vs 104% control (D2)</div></div>
+          <div class="metric"><div class="v">+$1.9M</div><div class="l">ARR uplift in 12 months, +11% (D3)</div></div>
+          <div class="metric"><div class="v accent">41%</div><div class="l">Lost deals citing pricing model (D7)</div></div>
+        </div>
+      </section>
+    </div>
+
+    <p class="footnote">Sources: TaskFlow Pricing Research Report, Q3 2026. Anchors (D1)–(D13) resolve in the appendix traceability table (p. 2). The End.</p>
+
+  </div>
+</div>
+
+<!-- ==================== APPENDIX · PAGE 2 (methodology + traceability + solution-problem map) ==================== -->
+<div class="appendix">
+  <div class="kicker" style="margin-bottom:18px;"><div>APPENDIX · EVIDENCE PACK</div><div>PAGE 2 OF 4</div></div>
+
+  <h3>A1 · Methodology &amp; samples</h3>
+  <p>Closed-lost interviews (47 deals, H1 2026) · win/loss analysis (96 competitive deals, H1 2026) · admin survey (n=412, stratified by segment, ±4.8pp at 95% confidence) · usage telemetry (12 months, all accounts) · pricing pilot (23 accounts, 6 months, Feb–Jul 2026) · competitor scan (7 products, list pricing plus 14 anonymized discovery calls). Full instruments and cross-tabs: report appendices A–F.</p>
+
+  <h3>A2 · Data traceability table (anchors D1–D13 cited on page 1)</h3>
+  <table>
+    <thead><tr><th>Anchor</th><th>Value</th><th>Source</th><th>Time / version</th><th>Crosscheck path</th></tr></thead>
+    <tbody>
+      <tr><td>D1</td><td>Hybrid price: $599/mo platform fee + $32/active user</td><td>Pricing pilot design; team proposal</td><td>Feb–Jul 2026 pilot; Q3 2026 report</td><td>Report §6, §9 · App. E workbook</td></tr>
+      <tr><td>D2</td><td>Pilot NRR 122% vs 104% control-matched (n=23, 6 mo)</td><td>Pricing pilot cohort</td><td>Feb–Jul 2026</td><td>Report §6 · App. C billing detail</td></tr>
+      <tr><td>D3</td><td>+$1.9M ARR (+11%) vs status quo, 12-mo projection at 60% new-account adoption</td><td>Financial model</td><td>Q3 2026 model</td><td>Report §7 · App. E scenarios</td></tr>
+      <tr><td>D4</td><td>Median seat utilization 61%</td><td>Usage telemetry, all accounts</td><td>12 mo to Q3 2026</td><td>Report §3 · App. F definitions</td></tr>
+      <tr><td>D5</td><td>72% of admins rank "paying for dormant seats" a top-3 frustration</td><td>Admin survey, n=412 (±4.8pp, 95% CI)</td><td>H1 2026 fieldwork</td><td>Report §5 · App. A cross-tabs</td></tr>
+      <tr><td>D6</td><td>Win rate 28% vs usage-based (n=31); 46% vs per-seat (n=52)</td><td>Win/loss analysis, 96 deals</td><td>H1 2026</td><td>Report §4 · App. B coded themes</td></tr>
+      <tr><td>D7</td><td>"Pricing model mismatch" #1 lost-deal reason: 41% (22% in 2025)</td><td>Win/loss + closed-lost interviews (n=47)</td><td>H1 2026 vs FY2025</td><td>Report §4 · App. B</td></tr>
+      <tr><td>D8</td><td>Win rate +9pp vs H1 baseline in 14 pilot-influenced deals</td><td>Pricing pilot</td><td>Feb–Jul 2026</td><td>Report §6 · App. C</td></tr>
+      <tr><td>D9</td><td>Seat-admin support tickets −61%</td><td>Pricing pilot</td><td>Feb–Jul 2026</td><td>Report §6 · App. C</td></tr>
+      <tr><td>D10</td><td>2 of 23 pilot accounts (9%) churned on bill surprise; caps + alerts rated 4.4/5</td><td>Pricing pilot</td><td>Feb–Jul 2026</td><td>Report §6 · App. C churn narratives</td></tr>
+      <tr><td>D11</td><td>Monthly revenue variance ±14% (pilot) vs ±4% (seat-based)</td><td>Pilot billing data</td><td>Feb–Jul 2026</td><td>Report §6 · App. C</td></tr>
+      <tr><td>D12</td><td>Billing infrastructure $480K; payback 7 months</td><td>Financial model</td><td>Q3 2026</td><td>Report §7 · App. E</td></tr>
+      <tr><td>D13</td><td>63% of Enterprise deals required flat annual pricing</td><td>Procurement records</td><td>Trailing 12 mo to Q3 2026</td><td>Report §8 · App. D</td></tr>
+    </tbody>
+  </table>
+
+  <h3>A3 · Solution–problem map ([1]–[6] × observed (a)–(c))</h3>
+  <table>
+    <thead><tr><th>Action</th><th>Solves</th><th>Expected effect</th></tr></thead>
+    <tbody>
+      <tr><td>[1] Hybrid price book, $599/mo + $32/active user</td><td>(a) seat waste · (b) market shift</td><td>Prices active use instead of dormant seats; answers the flexibility narrative</td></tr>
+      <tr><td>[2] Usage-billing infrastructure</td><td>enables [1] and [4]</td><td>$480K investment, 7-month payback (D12)</td></tr>
+      <tr><td>[3] Voluntary grandfathered migration</td><td>(a)</td><td>Removes forced-change renewal risk; seats stay the default</td></tr>
+      <tr><td>[4] Spending caps + threshold alerts</td><td>(c) bill surprise</td><td>The pilot's 4.4/5-rated fix (D10)</td></tr>
+      <tr><td>[5] Enterprise flat-contract default</td><td>(c) procurement</td><td>Protects the 63% flat-annual requirement (D13)</td></tr>
+      <tr><td>[6] Sales-comp re-territorying</td><td>(c) org readiness</td><td>Two-quarter transition completes before Q1 2027 launch</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== APPENDIX · PAGE 3 (adversarial FAQ + financial scenarios) ==================== -->
+<div class="appendix">
+  <div class="kicker" style="margin-bottom:18px;"><div>APPENDIX · ADVERSARIAL FAQ &amp; SCENARIOS</div><div>PAGE 3 OF 4</div></div>
+
+  <h3>A4 · Adversarial FAQ — the hardest questions we expect today</h3>
+  <p><strong>Why not status quo (Option A)?</strong> Seat expansion, our historical growth engine, ran at +6% YoY in Q3 2026 versus +19% two years prior; pricing-model mismatch already drives 41% of lost deals; seat administration is the single largest support driver at 18% of ticket volume. Standing still compounds all three. (§1, §3, §4)</p>
+  <p><strong>Why not full usage-based (Option B)?</strong> It maximizes the ±14% monthly revenue variance and breaks Enterprise procurement: 63% of Enterprise deals in the trailing 12 months required flat annual pricing. (§6, §8)</p>
+  <p><strong>What if bill surprise repeats at scale?</strong> The two churned pilot accounts (9%) churned before mitigation; caps plus threshold alerts were rated 4.4/5 by the remaining pilot accounts. Bear case if mitigation fails: −$0.7M ARR — contained by voluntary-only migration, grandfathering, and monthly governance with a defined kill-switch. (§6, §7)</p>
+  <p><strong>Do customers actually want this?</strong> Both halves are true: 68% of all admins prefer a predictable flat cost, while 57% of accounts above 100 active users — the highest-value cohort — prefer usage-based. The hybrid answers both: the $599 platform fee gives predictability, and the $32 active-user rate sits below the $38 median acceptable per-active-user price (versus $49/seat today). (§5)</p>
+  <p><strong>Will the market converge back to flat bundles?</strong> Two usage-based competitors have begun testing flat "all-in" annual bundles. The phased, voluntary design keeps our exit cheap if the market converges. (§8)</p>
+  <p><strong>What does this do to revenue predictability (the CFO's objection)?</strong> Pilot monthly variance ran ±14% versus ±4% under seat-based billing. Mitigations: the platform fee stabilizes the revenue base, spending caps bound the tail, and monthly governance tracks variance against a kill-switch. (§6, §8)</p>
+
+  <h3>A5 · Financial scenarios &amp; additional evidence</h3>
+  <p><strong>Scenarios (12-month horizon):</strong> base case +$1.9M ARR (+11%) at 60% new-account adoption; bear case −$0.7M ARR if bill-surprise mitigation fails and churn doubles in migrated accounts; required billing infrastructure investment $480K with payback in 7 months; sales-comp transition an estimated two quarters. (§7)</p>
+  <p><strong>Evidence demoted from page one:</strong> 23% of purchased seats dormant for 90+ days and 34% of accounts buying at least 2x their active seat count, both tied to elevated renewal risk (§3); conjoint ranks pricing model the most important buying attribute at 34%, ahead of features 27%, support 21%, integrations 18% (§5); current baseline — 1,240 paying accounts, 38,400 paid seats, ARPA $1,540/month, gross monthly churn 1.8% (§1); competitor mix — 3 pure per-seat, 2 usage-based, 2 hybrid of 7 scanned (§4).</p>
+</div>
+
+<!-- ==================== APPENDIX · PAGE 4 (RACI checklist per methodology §5.4 rule 6: >5 action items) ==================== -->
+<div class="appendix">
+  <div class="kicker" style="margin-bottom:18px;"><div>APPENDIX · RACI CHECKLIST</div><div>PAGE 4 OF 4</div></div>
+
+  <h3>A6 · RACI checklist — six actions, owners, deadlines, meet-target tests</h3>
+  <table>
+    <thead><tr><th>Phase</th><th>Item</th><th>Activities</th><th>Accountable</th><th>Deadline</th><th>Meet target</th></tr></thead>
+    <tbody>
+      <tr><td>Q1 2027 · Launch</td><td>[1] Hybrid price book</td><td>Publish the $599/mo platform fee + $32/active-user price book for new accounts</td><td>Pricing</td><td>Q1 2027 go-live</td><td>New-account win rate +9pp vs H1 2026 baseline (D8)</td></tr>
+      <tr><td>Q1 2027 · Launch</td><td>[2] Billing infrastructure</td><td>Build usage metering, spending caps, threshold alerts</td><td>Engineering</td><td>Kickoff upon approval; live for Q1 2027</td><td>$480K investment, 7-month payback (D12)</td></tr>
+      <tr><td>H2 2027 · Migration</td><td>[3] Migration waves</td><td>Run voluntary, grandfathered waves; seats stay the default</td><td>Customer Success</td><td>Through H2 2027</td><td>Migrated-cohort NRR toward the 122% benchmark (D2)</td></tr>
+      <tr><td>H2 2027 · Migration</td><td>[4] Caps + alerts</td><td>Enforce spending caps and threshold alerts on every usage-billed account</td><td>Product</td><td>Ships with [1]</td><td>Bill-surprise churn contained (4.4/5-rated fix, D10)</td></tr>
+      <tr><td>Ongoing · Guardrail</td><td>[5] Enterprise default</td><td>Hold the flat-annual default; usage on request only, capped</td><td>Sales</td><td>From Q1 2027</td><td>63% flat-contract requirement protected (D13)</td></tr>
+      <tr><td>Pre-launch</td><td>[6] Comp re-territorying</td><td>Re-territory sales compensation for usage revenue recognition</td><td>Sales Ops + Finance</td><td>Two-quarter transition, complete before Q1 2027</td><td>Comp plan live before launch</td></tr>
+    </tbody>
+  </table>
+  <p>Deadlines reuse the rollout timing in report §9 (new accounts from Q1 2027; voluntary migration waves through H2 2027; estimated two-quarter comp transition). Governance cadence — monthly for the first two quarters post-launch, then quarterly — is this team's proposed tracking rhythm, with a kill-switch if migrated-account churn exceeds the pilot baseline.</p>
+</div>
+
+</body>
+</html>
