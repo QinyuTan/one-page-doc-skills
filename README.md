@@ -1,146 +1,130 @@
-<div align="center">
-
 # one-pager
 
-### Compress anything into one page worth reading.
+An agent skill for compressing anything — a book, a 60-page report, meeting notes, a proposal — into exactly one A4 page that argues like an Amazon memo and looks like it came from a magazine's art desk. Packaged as a standard skill folder (`npx skills add`), readable by any coding agent with filesystem access. Deliberately **not** a PPT tool.
 
-**An agent skill that produces one-page narrative documents — argument that survives an Amazon memo review, typography that looks like a magazine's art desk did it.**
+**English** · [中文文档](README.zh-CN.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-0a0a0a.svg)](LICENSE)
-[![Skills](https://img.shields.io/badge/npx%20skills%20add-QinyuTan%2Fone--page--doc--skills-002FA7.svg)](#install)
-[![Evals](https://img.shields.io/badge/evals-30%20assertions%20%C3%97%204%20scenarios%20%C3%97%20ALL%20PASS-FF6B35.svg)](#evaluated--audited)
-[![Audit](https://img.shields.io/badge/3--round%20adversarial%20audit-7.5%20%E2%86%92%207.4%20%E2%86%92%208.1-brightgreen.svg)](#evaluated--audited)
+## What This Does
 
-*A book → 1 page. A 60-page report → 1 page. Your Q3 results → 1 page the CEO actually reads.*
+It helps non-writers produce one-page documents that hold up under scrutiny — executive memos, book digests, research insights — without knowing narrative structure or typography. The approach is **show, don't tell**: instead of asking you to describe your aesthetic preferences in words, it recommends a look with a reason, or generates visual previews and lets you pick what you like.
 
-**English · [中文文档](README.zh-CN.md)**
+Here are four pages made through the skill:
 
-</div>
-
----
-
-<p align="center">
-  <img src="examples/proposal-q3-budget-zh.png" width="31%" alt="Decision memo example">
-  <img src="examples/book-memo-working-backwards.png" width="31%" alt="Book memo example">
-  <img src="examples/insight-competitive-research.png" width="31%" alt="Insight page example">
+<p>
+  <img src="examples/proposal-q3-budget-zh.png" width="24.5%" alt="Decision memo — cut paid feed, move budget to referral" />
+  <img src="examples/book-memo-working-backwards.png" width="24.5%" alt="Book memo — Working Backwards distilled" />
+  <img src="examples/proposal-pricing-en.png" width="24.5%" alt="Executive brief — pricing decision" />
+  <img src="examples/insight-competitive-research.png" width="24.5%" alt="Insight page — competitive research" />
 </p>
-<p align="center"><sub>Three of the four shipped examples — decision memo · book memo · insight page. All pass the skill's own 30-assertion verifier.</sub></p>
 
----
+Each one passed the skill's own 30-assertion verifier before shipping — the same checks run on every page it produces.
 
-## Why
+### Key Features
 
-Every format fails the same way. Slides scatter one idea across twelve bullets. Documents sprawl past anyone's attention. AI summaries are walls of text with no hierarchy.
+- **One Page, Hard Constraint** — the body must fit one A4 page. When it overflows, words get cut; type never shrinks. Verified by script, not hope.
+- **Two Decision Layers** — an Amazon×MBB narrative methodology and a 48-sample style system, each with exactly one authoritative reference. Content and visuals never argue over jurisdiction.
+- **Visual Style Discovery** — can't articulate design preferences? No problem. It recommends with a reason, asks one plain-language question, or shows three previews and lets your eyes vote.
+- **Traceable Evidence** — every number in the body carries a `(D#)` anchor resolving into an appendix traceability table. Any figure crosschecks in under 3 minutes.
+- **Book-Scale Tiering** — feed it a whole book (≥ 50k characters) and get a three-tier deliverable: one-pager (30 seconds) + six-page narrative (10-minute silent read) + unlimited appendix.
+- **De-AI'd, First-Read-Safe Text** — dash budgets, no screenshot-quotable lines, rhythm variation, jargon glossed on first use. A first-time reader survives one linear pass.
 
-A one-pager forces the highest form of clarity — fitting everything that matters into one page. **The constraint is the product.**
+## Installation
 
-The skill is two decision layers, each with exactly one authoritative reference:
-
-| Layer | Governs | Distilled from |
-|---|---|---|
-| **Narrative** `narrative-methodology.md` | What to say, how to say it, what to cut | Amazon narrative culture (6-pager, PR/FAQ, Working Backwards) × MBB distillation (pyramid, 80/20, Action Title) — with a source genealogy table |
-| **Visual** `style-system.md` | How it looks | 48 first-hand style samples → three-level routing, T1–T7 presets, R1–R10 veto rules, an anti-AI-slop blacklist |
-
-Plus invariant A4 mechanics, a dual text-polish pass, and a programmatic verification toolbox. One arbiter per layer, every layer auditable.
-
-## Three forks, one question
-
-Routing asks only: *what does the reader do next?*
-
-| Reader's next action | Scenario | House pattern |
-|---|---|---|
-| **Retell it** | Books, courses, long articles | Book Memo (Adler × Sivers × Feynman) |
-| **Decide** | Proposals, approvals, quarterly reviews | Proposal five-part form (distilled from a real AWS GCR proposal) |
-| **Be convinced** | Research reports, data analyses | Insight Page (Zelazny × FT data journalism) |
-
-Book-scale input (≥ 50k characters)? Batch mode tiers it: **N0** one-pager (30 seconds) + **N1** six-page narrative (a 10-minute silent read, built on Amazon 6-pager principles) + **N2** unlimited appendix. Readers dive as deep as they need.
-
-## Seven looks, zero jargon
-
-The visual layer routes like an art director — 7 temperaments × 7 skeletons × 5 skin slots, or a preset straight off the shelf:
-
-| Preset | Name | The page feels like |
-|---|---|---|
-| **T1** | Swiss Blueprint | A trust's year-end report set by a modernist: Klein-blue accent, hairline rules, type that gets *thinner* as it gets bigger. For data, decisions, anything your leadership prints. |
-| **T2** | Magazine Feature | A Sunday long-form supplement: serif display, drop caps, pull quotes, five ink themes. For stories, research, anything human. |
-| **T3** | Archive Ledger | An institution's vault: ivory paper, ink, one deep accent, ledger tables with archival numbering. For white papers, investor briefs, anything that should feel *permanent*. |
-| **T4** | Poster Manifesto | Half a page for one claim in ultra-bold type; the other half carries the evidence. For launches, manifestos, one message that must land. |
-| **T5** | Paper Craft | Handwritten annotations, paper texture, washi tape — three hand-drawn touches maximum. For workshops, interviews, anything warm. |
-| **T6** | Era Revival | Win95 chrome, cassette-rainbow, riso print — era symbols that *serve the story*. For nostalgia with intent. |
-| **T7** | Terminal Noir | GitHub-dark canvas, terminal green, all mono, scanlines. For developer docs, anything that ships to engineers. |
-
-**You never have to know these names.** The style-discovery protocol spends the least interaction possible:
-
-- Name a style ("Swiss", "like a magazine feature") → mapped directly, deviations declared
-- Your phrasing carries the signal ("for the leadership", "launch event") → routed, no questions asked
-- Scenario is clear → it **recommends with a reason** ("data memo for leadership → Swiss Blueprint: high density, decision context, print-friendly")
-- Genuinely unclear → **one** question, in reference objects rather than jargon: *"Which printed thing is this closest to — a board memo, a magazine feature, a launch poster, or developer docs?"*
-- Still torn → three previews (safe / bold / wildcard), you judge with your eyes
-
-Whatever it picks, it **declares template + skin before writing a single line of HTML** — and the R1–R10 hard rules veto anything templated: one accent per page, no gradients, no rounded corners, no decorative color that encodes nothing, display lines capped at 12 Chinese characters.
-
-## The pipeline
-
-```
-PREFLIGHT → ARGUE → COMPOSE → EXPORT
-(classify      (fork, layers,    (route style,     (self-contained HTML
- the input,     QC gate Q1–Q9,   fill the page,     + PDF/PNG + 6 programmatic
- extract PDFs,  text polish)     verify fit)        assertions)
- scan books)
-```
-
-Every number in the body carries a `(D#)` anchor resolving bidirectionally into an appendix traceability table — a reader can crosscheck any figure in under 3 minutes. Text passes a dual polish: no AI tells (dash budgets, no screenshot-quotable lines, rhythm variation) and a **first-read rule** — every sentence survives a first-time reader, jargon glossed on first use.
-
-## Install
+**Any agent with skills support** (Claude Code, Codex, Cursor, Windsurf, iClaw, Baymax):
 
 ```bash
 npx skills add QinyuTan/one-page-doc-skills
 ```
 
-Works with Claude Code, Codex, Cursor, Windsurf, iClaw, Baymax — anything that speaks skills. **Manual**: copy `one-pager/` into your agent's skills folder. **Optional Python** for export: `pip install playwright && playwright install chromium` (falls back to headless Edge/Chrome automatically).
+**Manual**: copy the `one-pager/` directory into your agent's skills folder (e.g. `.claude/skills/` or `~/.agents/skills/`).
 
-## Use — just talk
+**Optional, for PDF export**: Python with `playwright` — otherwise the bundled `export.py` falls back to system Edge/Chrome automatically. For PDF input, `pypdf` (the bundled `extract.py` uses it). Nothing else. No npm, no build tools.
 
-- "Distill my notes on *Principles* into one page for Friday's book club"
-- "One page on the Q3 experiments for leadership — the call is to cut paid feed and move budget to referral"
-- "This 60-page research report is dying in the group chat — compress it to one page people can grasp in 3 minutes"
-- "Write a one-pager for our seed round"
+## Usage
 
-Even the complaint alone triggers it: *"too long, no highlights"* is a valid brief. The skill declares its routing before writing any HTML — fork, template, skin — so you can always override.
+### Distill a book into one page
 
-## Evaluated & audited
+> "Distill my notes on *Principles* into one page for Friday's book club — focus on what the team can borrow"
 
-- **4 scenarios × (with-skill vs baseline)** subagent runs: fork routing 4/4, structure assertions passing, weasel-word-free, one-page constraint held through 2–3 rounds of word-cutting — **zero type-shrinking, ever** (R1 is a hard rule)
-- **20/20 trigger-routing** simulation, including the deck-boundary cases: deck-as-*input* (summarize this board deck) → one-pager; deck-as-*output* (make a 20-slide PPT) → declined, by design
-- **3 rounds of independent adversarial audit**: 7.5 → 7.4 → **8.1**. The dip was real — the audit caught examples failing the skill's own newer rules; they were regenerated and now pass. All 4 shipped examples report `ALL RUN CHECKS PASS` via `scripts/check.py`
-- The test set ships with fixtures + a reproduction protocol — clone and re-run everything yourself
+1. The skill routes the scenario (reader will *retell* → Book Memo pattern) and declares the routing before writing anything
+2. Drafts the argument through a 9-gate QC (elevator test, So-What scan, weasel-word hunt…), then polishes the text for AI tells and first-read clarity
+3. Routes the visual — likely recommending Swiss Blueprint for a data-leaning digest — and fills the A4 page
+4. Verifies the page fits and exports a self-contained HTML + PDF
 
-## Repository
+### Turn research into a decision page
 
-```
-one-pager/
-├── SKILL.md                       4-phase orchestration (99 lines, no lore)
-├── references/
-│   ├── narrative-methodology.md   212 lines, sourced: AWS × MBB × Adler × Zelazny
-│   ├── style-system.md            185 lines: 3-level routing, T1–T7, R1–R10, anti-slop
-│   ├── humanize.md                text polish: de-AI-tell + first-read rule
-│   ├── batch-mode.md              book-scale tiering N0/N1/N2 (6-pager)
-│   ├── input-protocol.md          preflight + the verification toolbox
-│   └── typography.md              A4 mechanics, type floors, .page DOM contract
-├── assets/template.html           Swiss skeleton (.page / .narrative / .appendix)
-├── scripts/                       export.py · extract.py · check.py
-└── evals/                         4 scenarios, 30 assertions, fixtures, protocol
-examples/                          4 real outputs — HTML + PNG, all passing
-```
+> "One page on the Q3 experiments for leadership — the call is to cut paid feed and move budget to referral"
+
+1. Routes to the *decide* fork → Proposal five-part form (BLUF with decision flag, observed factors, actions with owners)
+2. Quantifies every claim from your data, anchors each number `(D1)…(Dn)`
+3. Routes the visual, builds the page, exports
+
+### Compress a report nobody reads
+
+> "This 60-page research report is dying in the group chat — one page people can grasp in 3 minutes"
+
+Routes to the *be convinced* fork → Insight Page: conclusion block with confidence level, one chart one conclusion, counter-hypotheses addressed, weasel words zero-tolerance.
+
+## Included Styles
+
+Seven presets, grouped by the job they do. Each is fully specified in the style system — you never need to name one.
+
+**For decisions & data**
+
+- **Swiss Blueprint** — Klein blue `#002FA7` on warm paper, hairline rules, display type that gets thinner as it gets bigger. The modernist's year-end report.
+- **Archive Ledger** — ivory and ink with one deep accent (crimson or navy), archival numbering on ledger tables. The institution's vault, for white papers and investor briefs.
+
+**For stories & people**
+
+- **Magazine Feature** — serif display over sans body, drop caps, pull quotes, five ink themes. The Sunday long-read.
+- **Paper Craft** — handwritten annotations over a readable sans body, paper texture, washi tape; three hand-drawn touches maximum. The workshop table.
+
+**For statements**
+
+- **Poster Manifesto** — one claim in ultra-black type across half the page, evidence takes the other half. Electric yellow on black, fire red on cream, or orange on charcoal.
+- **Era Revival** — Win95 chrome, cassette-rainbow, riso print; era symbols that serve the story. Nostalgia with intent.
+- **Terminal Noir** — terminal green `#39d353` on GitHub dark `#0d1117`, all mono, scanlines. Ships to engineers.
+
+## Architecture
+
+**Progressive disclosure** — the main `SKILL.md` is a 99-line workflow map; supporting references load on-demand only when needed.
+
+| File | Purpose | Loaded when |
+|---|---|---|
+| `SKILL.md` | 4-phase pipeline orchestration | Always |
+| `references/narrative-methodology.md` | Amazon×MBB narrative rules, 3 forks, 9 QC gates | Phase 1 (argument) |
+| `references/humanize.md` | De-AI-tell checklist + first-read rule | Phase 1 (after QC) |
+| `references/batch-mode.md` | Book-scale tiering N0/N1/N2 | Phase 1 (input ≥ 50k chars) |
+| `references/input-protocol.md` | Input preflight + verification toolbox | Phase 0 and Phase 3 |
+| `references/style-system.md` | Visual routing, T1–T7 presets, R1–R10 veto rules | Phase 2 (composition) |
+| `references/typography.md` | A4 mechanics, type floors, `.page` DOM contract | Phase 2 |
+| `assets/template.html` | Swiss skeleton: `.page` / `.narrative` / `.appendix` | Phase 2 |
+| `scripts/` | `export.py` · `extract.py` · `check.py` | Phases 0 and 3 |
+
+## Philosophy
+
+1. **The constraint is the product.** A page that could overflow was never forced to decide what matters.
+2. **You don't need to be a writer to argue well.** You need a gate that sends you back — there are nine.
+3. **Evidence lives in the appendix. Discipline lives on page one.**
+4. **Generic is forgettable.** One accent per page, no gradients, no decoration that encodes nothing.
+5. **A claim you can't crosscheck is a slogan.** Every number carries an anchor.
+
+## Evaluated & Audited
+
+Four scenarios ran with-skill vs baseline in fresh subagent sessions: fork routing 4/4, structure assertions passing, weasel-word-free, one-page constraint held through 2–3 rounds of word-cutting — zero type-shrinking, ever. A 20-query trigger-routing simulation passed 20/20, including the deck boundary: deck-as-*input* (summarize this board deck) is accepted; deck-as-*output* (make a 20-slide PPT) is declined, by design.
+
+The skill has been through three rounds of independent adversarial audit: 7.5 → 7.4 → 8.1. The dip was real — the auditor caught shipped examples failing the skill's own newer rules; they were regenerated and now report `ALL RUN CHECKS PASS` via `scripts/check.py`. The test set ships with input fixtures and a reproduction protocol; clone the repo and re-run everything yourself.
+
+## Requirements
+
+- Any agent that reads skill files (Claude Code, Codex, Cursor, Windsurf, iClaw, Baymax)
+- For PDF export: Python 3, optionally `playwright` (auto-falls back to system Edge/Chrome)
+- For PDF input: `pypdf`
+
+## Credits
+
+The narrative methodology and style system were authored by the project owner, distilled from Amazon's writing culture, MBB consulting practice, and 48 first-hand style samples. House patterns trace to Adler, Sivers, Zelazny, and FT data journalism — full source genealogy tables live in the references.
 
 ## License
 
-MIT — the two methodology references retain their authorship genealogy. Star it, fork it, feed it a book.
-
-<div align="center">
-
-**One page is all it takes.**
-
-<sub>Built with the discipline it sells: this README survives the same rules the skill enforces — one accent, no decoration that encodes nothing, and not a single claim you can't crosscheck.</sub>
-
-</div>
+MIT — use it, fork it, feed it a book.
