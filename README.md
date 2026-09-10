@@ -8,14 +8,30 @@ An agent skill for compressing anything — a book, a 60-page report, meeting no
 
 It helps people who don't write for a living produce one-page documents that hold up — executive memos, book digests, research insights — without knowing narrative structure or typography. The approach is **show, don't tell**: instead of asking you to describe your aesthetic preferences in words, it recommends a look with a reason, or generates visual previews and lets you pick.
 
-Here are four pages made through the skill:
+Here are four pages made through the skill — page one of each; every page carries an appendix of evidence behind it:
 
-<p>
-  <img src="examples/proposal-q3-budget-zh.png" width="24.5%" alt="Decision memo — cut paid feed, move budget to referral" />
-  <img src="examples/book-memo-working-backwards.png" width="24.5%" alt="Book memo — Working Backwards distilled" />
-  <img src="examples/proposal-pricing-en.png" width="24.5%" alt="Executive brief — pricing decision" />
-  <img src="examples/insight-competitive-research.png" width="24.5%" alt="Insight page — competitive research" />
-</p>
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/proposal-q3-budget-zh.html"><img src="examples/q3-page1.png" alt="Decision memo (Chinese) — cut paid feed, move budget to referral" width="88%"></a>
+      <br><sub><b>Decision memo</b> · zh — Q3 channel call for leadership · <a href="examples/proposal-q3-budget-zh.html">source</a></sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/proposal-pricing-en.html"><img src="examples/pricing-page1.png" alt="Executive brief (English) — adopt hybrid pricing" width="88%"></a>
+      <br><sub><b>Executive brief</b> · en — pricing decision before a board meeting · <a href="examples/proposal-pricing-en.html">source</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/book-memo-working-backwards.html"><img src="examples/bookmemo-page1.png" alt="Book memo — Working Backwards distilled to one page" width="88%"></a>
+      <br><sub><b>Book memo</b> — *Working Backwards* distilled for a book club · <a href="examples/book-memo-working-backwards.html">source</a></sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/insight-competitive-research.html"><img src="examples/insight-page1.png" alt="Insight page — competitive research, the pricier the stickier" width="88%"></a>
+      <br><sub><b>Insight page</b> — competitive research in 3 minutes · <a href="examples/insight-competitive-research.html">source</a></sub>
+    </td>
+  </tr>
+</table>
 
 Each one passed the skill's own 30-assertion verifier before shipping. The same checks run on every page it produces — yes, including the ones that were inconvenient (see Evaluated & Audited).
 

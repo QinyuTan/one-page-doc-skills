@@ -8,14 +8,30 @@
 
 它帮不以写作为生的人，产出站得住的一页纸——管理层备忘录、读书摘要、调研洞察——不需要你懂叙事结构，也不需要懂排版。方法是 **Show, don't tell**：不要求你用语言描述审美偏好，而是带着理由推荐一种长相，或者生成几版预览让你挑。
 
-下面四页纸，都是用这个技能做出来的：
+下面四页纸都是用这个技能做出来的——每张只展示首页，每页背后还附着一页证据：
 
-<p>
-  <img src="examples/proposal-q3-budget-zh.png" width="24.5%" alt="决策备忘录——砍信息流，转投裂变" />
-  <img src="examples/book-memo-working-backwards.png" width="24.5%" alt="读书备忘录——Working Backwards 读薄" />
-  <img src="examples/proposal-pricing-en.png" width="24.5%" alt="高管简报——定价决策" />
-  <img src="examples/insight-competitive-research.png" width="24.5%" alt="洞察页——竞品调研" />
-</p>
+<table>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/proposal-q3-budget-zh.html"><img src="examples/q3-page1.png" alt="决策备忘录——砍信息流，转投裂变" width="88%"></a>
+      <br><sub><b>决策备忘录</b> · 中文 — Q3 渠道决策，给管理层 · <a href="examples/proposal-q3-budget-zh.html">源文件</a></sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/proposal-pricing-en.html"><img src="examples/pricing-page1.png" alt="高管简报——采纳混合定价" width="88%"></a>
+      <br><sub><b>高管简报</b> · 英文 — 董事会前的定价决策 · <a href="examples/proposal-pricing-en.html">源文件</a></sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/book-memo-working-backwards.html"><img src="examples/bookmemo-page1.png" alt="读书备忘录——Working Backwards 读薄成一页" width="88%"></a>
+      <br><sub><b>读书备忘录</b> — 《Working Backwards》读书会用 · <a href="examples/book-memo-working-backwards.html">源文件</a></sub>
+    </td>
+    <td width="50%" align="center" valign="top">
+      <a href="examples/insight-competitive-research.html"><img src="examples/insight-page1.png" alt="洞察页——竞品调研，越贵越留得住" width="88%"></a>
+      <br><sub><b>洞察页</b> — 竞品调研三分钟版 · <a href="examples/insight-competitive-research.html">源文件</a></sub>
+    </td>
+  </tr>
+</table>
 
 每一页出厂前都过了技能自带的三十条断言。它产出的每一页都过同样的检查——包括那些让作者自己难堪的（见「评估与审计」）。
 
