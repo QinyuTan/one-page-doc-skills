@@ -1,12 +1,12 @@
 # one-pager
 
-An agent skill for compressing anything — a book, a 60-page report, meeting notes, a proposal — into exactly one A4 page that argues like an Amazon memo and looks like it came from a magazine's art desk. Packaged as a standard skill folder (`npx skills add`), readable by any coding agent with filesystem access. Deliberately **not** a PPT tool.
+An agent skill for compressing anything — a book, a 60-page report, meeting notes, a proposal — into exactly one A4 page that argues like an Amazon memo and looks like a magazine's art desk made it. Packaged as a standard skill folder (`npx skills add`), readable by any coding agent with filesystem access. Deliberately **not** a PPT tool.
 
 **English** · [中文文档](README.zh-CN.md)
 
 ## What This Does
 
-It helps non-writers produce one-page documents that hold up under scrutiny — executive memos, book digests, research insights — without knowing narrative structure or typography. The approach is **show, don't tell**: instead of asking you to describe your aesthetic preferences in words, it recommends a look with a reason, or generates visual previews and lets you pick what you like.
+It helps people who don't write for a living produce one-page documents that hold up — executive memos, book digests, research insights — without knowing narrative structure or typography. The approach is **show, don't tell**: instead of asking you to describe your aesthetic preferences in words, it recommends a look with a reason, or generates visual previews and lets you pick.
 
 Here are four pages made through the skill:
 
@@ -17,16 +17,16 @@ Here are four pages made through the skill:
   <img src="examples/insight-competitive-research.png" width="24.5%" alt="Insight page — competitive research" />
 </p>
 
-Each one passed the skill's own 30-assertion verifier before shipping — the same checks run on every page it produces.
+Each one passed the skill's own 30-assertion verifier before shipping. The same checks run on every page it produces — yes, including the ones that were inconvenient (see Evaluated & Audited).
 
 ### Key Features
 
-- **One Page, Hard Constraint** — the body must fit one A4 page. When it overflows, words get cut; type never shrinks. Verified by script, not hope.
-- **Two Decision Layers** — an Amazon×MBB narrative methodology and a 48-sample style system, each with exactly one authoritative reference. Content and visuals never argue over jurisdiction.
-- **Visual Style Discovery** — can't articulate design preferences? No problem. It recommends with a reason, asks one plain-language question, or shows three previews and lets your eyes vote.
-- **Traceable Evidence** — every number in the body carries a `(D#)` anchor resolving into an appendix traceability table. Any figure crosschecks in under 3 minutes.
-- **Book-Scale Tiering** — feed it a whole book (≥ 50k characters) and get a three-tier deliverable: one-pager (30 seconds) + six-page narrative (10-minute silent read) + unlimited appendix.
-- **De-AI'd, First-Read-Safe Text** — dash budgets, no screenshot-quotable lines, rhythm variation, jargon glossed on first use. A first-time reader survives one linear pass.
+- **One page, hard constraint** — the body must fit one A4 page. When it overflows, words get cut; type never shrinks. Verified by script, not hope.
+- **Two decision layers** — a narrative methodology (Amazon writing culture × MBB consulting) and a style system (48 hand-inspected samples), each with exactly one authoritative reference. Content and visuals never argue over jurisdiction.
+- **Style discovery without vocabulary** — can't articulate what you want a page to *feel* like? That's normal. It recommends with a reason, asks one plain-language question, or shows three previews and lets your eyes vote.
+- **Evidence you can crosscheck** — every number in the body carries a `(D#)` anchor resolving into an appendix traceability table. Any figure, under 3 minutes. (The anchors are the skill's own idea of fun.)
+- **Book-scale tiering** — feed it a whole book (≥ 50k characters) and get three tiers: one-pager (30 seconds) + six-page narrative (10-minute silent read) + unlimited appendix. The middle tier borrows Amazon's 6-pager rules, including "written to be read without a presenter."
+- **Text that survives a first read** — dash budgets, no screenshot-quotable lines, jargon glossed on first use. The polish pass assumes a smart reader who has never seen your source material.
 
 ## Installation
 
@@ -38,7 +38,7 @@ npx skills add QinyuTan/one-page-doc-skills
 
 **Manual**: copy the `one-pager/` directory into your agent's skills folder (e.g. `.claude/skills/` or `~/.agents/skills/`).
 
-**Optional, for PDF export**: Python with `playwright` — otherwise the bundled `export.py` falls back to system Edge/Chrome automatically. For PDF input, `pypdf` (the bundled `extract.py` uses it). Nothing else. No npm, no build tools.
+**Optional, for PDF export**: Python with `playwright`. Without it, the bundled `export.py` falls back to system Edge/Chrome — slower, but it works. For PDF input you'll want `pypdf` (the bundled `extract.py` uses it). Nothing else: no npm, no build tools.
 
 ## Usage
 
@@ -46,44 +46,44 @@ npx skills add QinyuTan/one-page-doc-skills
 
 > "Distill my notes on *Principles* into one page for Friday's book club — focus on what the team can borrow"
 
-1. The skill routes the scenario (reader will *retell* → Book Memo pattern) and declares the routing before writing anything
-2. Drafts the argument through a 9-gate QC (elevator test, So-What scan, weasel-word hunt…), then polishes the text for AI tells and first-read clarity
-3. Routes the visual — likely recommending Swiss Blueprint for a data-leaning digest — and fills the A4 page
-4. Verifies the page fits and exports a self-contained HTML + PDF
+1. The skill routes the scenario (reader will *retell* → Book Memo pattern) and says so before writing anything
+2. Drafts the argument through a 9-gate QC — elevator test, So-What scan, weasel-word hunt — then polishes the text for AI tells and first-read clarity
+3. Routes the visual (a data-leaning digest will likely get a Swiss Blueprint recommendation) and fills the page
+4. Checks that the page fits, exports a self-contained HTML + PDF
 
 ### Turn research into a decision page
 
 > "One page on the Q3 experiments for leadership — the call is to cut paid feed and move budget to referral"
 
-1. Routes to the *decide* fork → Proposal five-part form (BLUF with decision flag, observed factors, actions with owners)
-2. Quantifies every claim from your data, anchors each number `(D1)…(Dn)`
-3. Routes the visual, builds the page, exports
+Routes to the *decide* fork → Proposal five-part form: BLUF with a decision flag, observed factors, actions with named owners. Every claim quantified from your data, each number anchored `(D1)…(Dn)`.
 
 ### Compress a report nobody reads
 
 > "This 60-page research report is dying in the group chat — one page people can grasp in 3 minutes"
 
-Routes to the *be convinced* fork → Insight Page: conclusion block with confidence level, one chart one conclusion, counter-hypotheses addressed, weasel words zero-tolerance.
+Routes to the *be convinced* fork → Insight Page: a conclusion block with a confidence level (the skill will write "medium confidence, four competitors, causality unverified" rather than pretend), one chart one conclusion, counter-hypotheses answered, weasel words zero tolerance.
+
+Even the complaint alone triggers it — *"too long, no highlights"* is a valid brief.
 
 ## Included Styles
 
-Seven presets, grouped by the job they do — shown below, all built from the same decision data (a bookstore's late-hours call), so you can compare temperaments apples-to-apples. Each is fully specified in the style system; you never need to name one.
+Seven presets, grouped by the job they do. All six gallery pages below were built from the same decision data (a bookstore's late-hours call), so you can compare temperaments apples-to-apples. You never need to name one.
 
 **For decisions & data**
 
 - [**Swiss Blueprint**](examples/proposal-q3-budget-zh.png) — Klein blue `#002FA7` on warm paper, hairline rules, display type that gets thinner as it gets bigger. The modernist's year-end report.
-- [**Archive Ledger**](examples/t3-ledger.html) — ivory and ink with one deep accent, archival numbering on ledger tables. The institution's vault, for white papers and investor briefs.
+- [**Archive Ledger**](examples/t3-ledger.html) — ivory and ink with one deep accent, ledger rows numbered like an archive. For white papers and investor briefs — anything that should outlive the quarter.
 
 **For stories & people**
 
-- [**Magazine Feature**](examples/t2-magazine.html) — serif display over sans body, drop caps, pull quotes, two-column justified text. The Sunday long-read.
-- [**Paper Craft**](examples/t5-paper.html) — handwritten annotations over a readable sans body, paper grain, washi tape; three hand-drawn touches maximum. The workshop table.
+- [**Magazine Feature**](examples/t2-magazine.html) — serif display, drop caps, a pull quote, two justified columns. The Sunday long-read.
+- [**Paper Craft**](examples/t5-paper.html) — handwritten annotations over a readable sans body, paper grain, washi tape. Three hand-drawn touches maximum — more than that and it stops being charming.
 
 **For statements**
 
 - [**Poster Manifesto**](examples/t4-poster.html) — one claim in ultra-black type across half the page, evidence takes the other half. Cream paper, fire red.
-- [**Era Revival**](examples/t6-retro.html) — a full Win95 window as the page: title bar, menu, status bar, checkboxes. Nostalgia with intent.
-- [**Terminal Noir**](examples/t7-terminal.html) — the decision rendered as a shell session: prompt, flags, syntax highlighting, exit 0. Ships to engineers.
+- [**Era Revival**](examples/t6-retro.html) — the whole page is a Win95 window: title bar, menu, status bar, checkboxes. Nostalgia with intent, not as a costume.
+- [**Terminal Noir**](examples/t7-terminal.html) — the decision rendered as a shell session: prompt, flags, syntax highlighting, `exit 0`. Ships to engineers.
 
 ### Style gallery — same data, six temperaments
 
@@ -97,7 +97,8 @@ Seven presets, grouped by the job they do — shown below, all built from the sa
   <a href="examples/t6-retro.png"><img src="examples/t6-retro.png" width="32.5%" alt="Era Revival — Win95 nostalgia with intent"></a>
   <a href="examples/t7-terminal.png"><img src="examples/t7-terminal.png" width="32.5%" alt="Terminal Noir — decision as a shell session"></a>
 </p>
-<sub>One decision — extend the bookstore's weekend hours to midnight — rendered in six of the seven presets. Click any image for the full page; the HTML sources live in `examples/`.</sub>
+
+One decision — keep the bookstore open until midnight on weekends — rendered six ways. Click any image for the full page; the HTML sources live in `examples/`.
 
 ## Architecture
 
@@ -117,17 +118,19 @@ Seven presets, grouped by the job they do — shown below, all built from the sa
 
 ## Philosophy
 
-1. **The constraint is the product.** A page that could overflow was never forced to decide what matters.
-2. **You don't need to be a writer to argue well.** You need a gate that sends you back — there are nine.
-3. **Evidence lives in the appendix. Discipline lives on page one.**
+1. **The page is the argument.** A page that could overflow never had to decide what matters.
+2. **Nine gates beat good intentions.** Writing improves when something sends you back.
+3. **Evidence lives in the appendix.** Discipline lives on page one. Both survive the meeting.
 4. **Generic is forgettable.** One accent per page, no gradients, no decoration that encodes nothing.
-5. **A claim you can't crosscheck is a slogan.** Every number carries an anchor.
+5. **A number without an anchor is a slogan.** Every figure points to somewhere you can check.
 
 ## Evaluated & Audited
 
-Four scenarios ran with-skill vs baseline in fresh subagent sessions: fork routing 4/4, structure assertions passing, weasel-word-free, one-page constraint held through 2–3 rounds of word-cutting — zero type-shrinking, ever. A 20-query trigger-routing simulation passed 20/20, including the deck boundary: deck-as-*input* (summarize this board deck) is accepted; deck-as-*output* (make a 20-slide PPT) is declined, by design.
+Four scenarios ran with-skill vs baseline in fresh subagent sessions: fork routing 4/4, structure assertions passing, weasel-word-free, one-page constraint held through 2–3 rounds of word-cutting. Zero type-shrinking — R1 is a hard rule, and the verifier enforces it on the author too (it has sent this skill's own edits back to the oven three times now).
 
-The skill has been through three rounds of independent adversarial audit: 7.5 → 7.4 → 8.1. The dip was real — the auditor caught shipped examples failing the skill's own newer rules; they were regenerated and now report `ALL RUN CHECKS PASS` via `scripts/check.py`. The test set ships with input fixtures and a reproduction protocol; clone the repo and re-run everything yourself.
+A 20-query trigger-routing simulation passed 20/20, including the deck boundary: deck-as-*input* (summarize this board deck) is accepted; deck-as-*output* (make a 20-slide PPT) is declined. That's the point.
+
+Three rounds of independent adversarial audit: 7.5 → 7.4 → 8.1. The dip was real — the auditor caught shipped examples failing the skill's own newer rules. They were regenerated; all four now report `ALL RUN CHECKS PASS` via `scripts/check.py`. Honest limitation: the audits ran on one model family. Cross-model behavior is unverified — clone the repo, the test set ships with fixtures, and re-run everything yourself.
 
 ## Requirements
 
@@ -137,7 +140,7 @@ The skill has been through three rounds of independent adversarial audit: 7.5 �
 
 ## Credits
 
-The narrative methodology and style system were authored by the project owner, distilled from Amazon's writing culture, MBB consulting practice, and 48 first-hand style samples. House patterns trace to Adler, Sivers, Zelazny, and FT data journalism — full source genealogy tables live in the references.
+The narrative methodology and style system were authored by the project owner, distilled from Amazon's writing culture, MBB consulting practice, and 48 first-hand style samples. House patterns trace to Adler, Sivers, Zelazny, and FT data journalism — the source genealogy tables live in the references.
 
 ## License
 
