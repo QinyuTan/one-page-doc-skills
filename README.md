@@ -81,6 +81,58 @@ Routes to the *be convinced* fork → Insight Page: a conclusion block with a co
 
 Even the complaint alone triggers it — *"too long, no highlights"* is a valid brief.
 
+### A dozen more things it eats
+
+The three recipes above are the shapes. Real briefs are messier — here are ones that actually work, with the exact first sentence to copy:
+
+**When someone has to learn something**
+
+| You say | You get |
+|---|---|
+| "Onboard note: compress our team wiki into one page for the new hire starting Monday" | A Book Memo of your norms — what survives is what actually matters |
+| "This 20-page paper — one page, focus on the method and what I can borrow for my experiment design" | A paper digest you can retell at lab meeting without the PDF open |
+| "Turn this week's course notes into a one-page cheat sheet I can pin above my desk" | Distilled notes, jargon glossed — pinned, not archived |
+
+**When someone has to decide or act**
+
+| You say | You get |
+|---|---|
+| "My three wins this week into a one-page status — my boss reads for 30 seconds" | A status page where the 30 seconds land on the right numbers |
+| "I'm asking the VP for two contractor headcount — one page, data in the attachment" | A proposal with a decision flag, not a deck she'll forward with "thoughts?" |
+| "Today's 40-minute review call transcript → one-page decision memo, who owns what, by when" | Meeting notes that became a decision instead of a file |
+| "Project's done — the retro doc into one page" | A closing memo people will actually read before the next kickoff |
+
+**When someone has to be convinced**
+
+| You say | You get |
+|---|---|
+| "This week's 300 user complaints into one page — by pain, by frequency" | An insight page that names the top pain with counts, not adjectives |
+| "The churn analysis I just ran — one page for the ops team, lead with the counterintuitive bit" | A conclusion with confidence level and counter-hypotheses, not charts to interpret |
+| "Three competitors' public material into one comparison page" | One insight, one chart — not a feature-checklist wall |
+
+**Feeding it differently**
+
+| You say | You get |
+|---|---|
+| "This 45-slide board deck → one page with the three numbers and the ask" | Deck as *input* is accepted (deck as *output* is declined — that's the line) |
+| "Compress this link" (paste any article URL) | It fetches, routes, and pages it — the link is the brief |
+| "Convince my CEO to greenlight the messaging redesign — here's my draft thinking" | 0→1 mode: it builds the argument from your idea via Working Backwards, PR-first |
+| "This whole book" (a 300-page PDF lands in the folder) | Batch mode, unprompted: one-pager + six-page narrative + evidence appendix |
+
+### Ways to steer it
+
+- **Name the reader and their next move.** "For leadership, who decides Friday" routes better than "make it good" — the fork is literally built on the reader's next action.
+- **If you already know the call, say it.** "The conclusion is: cut paid feed" turns the skill into your advocate. Leave the conclusion out and it will still argue — it just won't pretend the data decided for you.
+- **Override the style any time.** It declares its routing (fork + template + skin) before writing HTML — that's your window. "Actually, make it feel like a magazine feature" costs one sentence. Or name nothing and judge the three previews it offers.
+- **Ask for the PNG when it's going in a group chat** — HTML for email and print, PNG for chat and slides, PDF for attachments.
+- **Keep the appendix in mind when stakes are high.** The traceability table is the part that survives a skeptical CFO: every number, where it came from, how to recheck it.
+
+### When not to use it
+
+- You want slides as the deliverable → use a slide skill. This one will decline, politely and on purpose.
+- You need the full document preserved (contracts, specs, audit records) → compression is the wrong operation; it summarizes up, it doesn't archive down.
+- You want a living dashboard → it makes one page, once, that argues. Refreshing is a different job.
+
 ## Included Styles
 
 Seven presets, grouped by the job they do. All six gallery pages below were built from the same decision data (a bookstore's late-hours call), so you can compare temperaments apples-to-apples. You never need to name one.
