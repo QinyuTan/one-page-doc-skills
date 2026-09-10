@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+  Style gallery · T2 杂志特稿 Magazine Feature
+  数据集：西岸书店延时经营（C2 人文温度 × S2 编辑排版 × 主题：靛蓝瓷）
+  T2 spec: 衬线大标题 + 无衬线正文 · 亮底 · 三色系统 · 直角 · 低装饰 · 首字下沉或 pull quote
+  演示页（简化版：主张 + 核心证据 + 一个 pull quote），非完整房屋模式产出
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>T2 杂志特稿 · 周末不打烊</title>
+<style>
+  :root {
+    --paper: #f7f5f0; --ink: #1d2b2a; --accent: #31567d; --accent-2: #8a5a44; --muted: #6b7a78;
+    --serif: "Georgia", "Noto Serif SC", "Songti SC", "SimSun", serif;
+    --sans: "Helvetica Neue", "Microsoft YaHei UI", "Noto Sans SC", sans-serif;
+    --mono: "Cascadia Code", Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #e8e5de; font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 60px 64px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+  .kicker {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); border-bottom: 1px solid var(--ink); padding-bottom: 12px;
+    display: flex; justify-content: space-between;
+  }
+  h1 { font-family: var(--serif); font-size: 58px; font-weight: 400; line-height: 1.18; margin-top: 34px; letter-spacing: 0.01em; }
+  .deck { font-family: var(--serif); font-size: 16.5px; font-style: italic; color: var(--muted); line-height: 1.75; margin-top: 20px; max-width: 34em; }
+  .dropcap::first-letter {
+    font-family: var(--serif); font-size: 64px; float: left; line-height: 0.82;
+    padding: 8px 10px 0 0; color: var(--accent);
+  }
+  .body-col { column-count: 2; column-gap: 34px; column-rule: 1px solid #d5d0c6; margin-top: 30px; }
+  .body-col p { font-size: 13px; line-height: 1.85; text-align: justify; }
+  .body-col p + p { margin-top: 10px; }
+  .num { font-weight: 600; }
+  .pull {
+    font-family: var(--serif); font-size: 21px; line-height: 1.55; color: var(--accent);
+    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    padding: 22px 8px; margin: 26px 0; text-indent: -0.4em;
+    break-inside: avoid;
+  }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 28px; border-top: 2px solid var(--ink); padding-top: 22px; }
+  .stat .v { font-family: var(--serif); font-size: 40px; font-weight: 400; }
+  .stat .v em { font-style: normal; color: var(--accent-2); }
+  .stat .l { font-size: 11px; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  .foot { position: absolute; bottom: 56px; left: 64px; right: 64px; font-family: var(--mono); font-size: 9.5px; color: var(--muted); border-top: 1px solid #d5d0c6; padding-top: 12px; display: flex; justify-content: space-between; letter-spacing: 0.08em; }
+  @page { size: A4; margin: 0; }
+  @media print { body { background: var(--paper); } .page { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="kicker"><div>FEATURE · 一家书店的深夜经济学</div><div>2026 · 西岸书店</div></div>
+  <h1>周末不打烊：<br>一家书店的深夜经济学</h1>
+  <p class="deck">当 91% 的连锁自习室在深夜满座，一家街角书店决定把灯留到零点——半年过去，账本给出了回答。</p>
+
+  <div class="stats">
+    <div class="stat"><div class="v">¥41.2<em>万</em></div><div class="l">10 个延时周末的增量营收 (D3)</div></div>
+    <div class="stat"><div class="v">46<em>%</em></div><div class="l">周末晚七点后客流占比 (D1)</div></div>
+    <div class="stat"><div class="v">64<em>%</em></div><div class="l">会员愿为深夜自习续费 (D6)</div></div>
+  </div>
+
+  <div class="body-col">
+    <p class="dropcap">四月的一个周五，店长在打烊铃响前十分钟数了数还在座位上的人：四十七位。他们中的大多数会在被请出门后，走进两条街外那家 24 小时自习室——满座率 91% 的竞争对手 (D5)。这个画面促成了后来的一切：与其把深夜的客人让出去，不如把灯留到零点。</p>
+    <p>试点比想象中克制。只在周末，只延两小时，先跑十个周末再谈未来。人力多排两名晚班店员，成本抬升 ¥8.6 万；耗材与水电再添 ¥3.1 万 (D3)。账算下来，利润率与日间几乎持平——夜间生意的秘密不在溢价，而在结构：晚间客单价 ¥73 对日间 ¥58，多出来的十五块钱，来自咖啡与文创的顺手购买 (D2)。</p>
+    <p class="pull">「与其把深夜的客人<br>让出去，不如把灯<br>留到零点。」</p>
+    <p>深夜的客人是谁？问卷给出了画像 (D4)：自习阅读占一半以上，小型读书会四分之一强，还有牵着孩子来的父母。这不是想象中借酒消愁的深夜，是城市里安静生长的另一种需求。治理条款也写在了前面：若延时三个月复购不足四成，营业时间原样回滚——一家书店可以浪漫，但账本必须清醒。</p>
+  </div>
+
+  <div class="foot"><div>证据锚点 D1-D6 见附页溯源表 · 数据源：门店 POS · 会员问卷 n=214 · 竞品实地走访</div><div>T2 · MAGAZINE FEATURE</div></div>
+</div>
+</body>
+</html>

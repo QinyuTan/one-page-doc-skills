@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+  Style gallery · T5 纸上手作 Paper Craft
+  数据集：西岸书店延时经营（C5 温暖手作 × S6 模块卡片 × 黄纸+墨蓝）
+  T5 spec: 手写体只做点缀批注 · 正文无衬线 · 纸纹 · 手绘元素 ≤3 处 · 饱和度压低
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>T5 纸上手作 · 深夜书房计划</title>
+<style>
+  :root {
+    --paper: #f4ead3; --ink: #2c3a55; --rust: #b3552e; --muted: #7d7460;
+    --card: #faf3e0;
+    --sans: "Helvetica Neue", "Microsoft YaHei UI", "Noto Sans SC", sans-serif;
+    --hand: "Segoe Script", "Comic Sans MS", "KaiTi", cursive;
+    --mono: "Cascadia Code", Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #e2d7bc; font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 56px 58px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+  /* paper grain */
+  .page::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
+    background-image: repeating-linear-gradient(0deg, transparent 0 2px, rgba(120,100,60,0.028) 2px 4px),
+                      repeating-linear-gradient(90deg, transparent 0 3px, rgba(120,100,60,0.02) 3px 6px);
+  }
+  .tape { position: absolute; width: 120px; height: 30px; background: rgba(214,196,150,0.75); transform: rotate(-4deg); top: 42px; left: 46px; box-shadow: 0 1px 2px rgba(60,45,20,0.18); }
+  .kicker { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust); margin-top: 26px; }
+  h1 { font-size: 46px; font-weight: 300; line-height: 1.2; margin-top: 14px; }
+  h1 .hl { background: linear-gradient(transparent 62%, rgba(179,85,46,0.32) 62%); }
+  .hand-note { font-family: var(--hand); color: var(--rust); font-size: 19px; transform: rotate(-2deg); margin-top: 12px; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+  .card { background: var(--card); padding: 22px 22px 18px; border: 1px solid rgba(60,70,90,0.16); box-shadow: 2px 3px 0 rgba(60,45,20,0.10); }
+  .card h3 { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+  .card h3::before { content: ""; width: 9px; height: 9px; background: var(--rust); border-radius: 0; transform: rotate(45deg); }
+  .card p { font-size: 12.5px; line-height: 1.8; margin-top: 10px; }
+  .num { font-weight: 600; }
+  .big-card { grid-column: 1 / -1; background: var(--card); border: 1px solid rgba(60,70,90,0.16); box-shadow: 2px 3px 0 rgba(60,45,20,0.10); padding: 24px 24px 20px; margin-top: 20px; }
+  .big-card .bc-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .big-card h3 { font-size: 13px; font-weight: 600; }
+  .score { font-family: var(--hand); font-size: 26px; color: var(--rust); }
+  .mini-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 16px; }
+  .ms .v { font-size: 25px; font-weight: 300; }
+  .ms .l { font-size: 10px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+  .arrow { position: absolute; font-family: var(--hand); color: var(--rust); font-size: 22px; }
+  .foot { position: absolute; bottom: 52px; left: 58px; right: 58px; font-family: var(--mono); font-size: 9.5px; color: var(--muted); border-top: 1px dashed rgba(125,116,96,0.5); padding-top: 12px; display: flex; justify-content: space-between; }
+  @page { size: A4; margin: 0; }
+  @media print { body { background: var(--paper); } .page { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="tape"></div>
+  <div class="kicker">PAPER CRAFT · 工作坊讨论稿 · 西岸书店</div>
+  <h1>「深夜书房」计划：<br><span class="hl">把周末的灯留到零点</span></h1>
+  <div class="hand-note">店长四月写在打烊本上的一句话：数了数，47 个人还不想走。</div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>夜里有客人</h3>
+      <p>周末晚七点后占全天客流 <span class="num">46%</span> (D1)；晚间客单价 <span class="num">¥73</span>，比白天高十五块 (D2)——多在咖啡和文创上。</p>
+    </div>
+    <div class="card">
+      <h3>对手满座着</h3>
+      <p>一公里内两家 24 小时自习室，满座率 <span class="num">91%</span> (D5)。客人不是没有深夜需求，是没地方去。</p>
+    </div>
+    <div class="card">
+      <h3>他们来干嘛</h3>
+      <p>问卷画了像 (D4)：自习阅读 <span class="num">52%</span>，小型读书会 <span class="num">27%</span>，亲子共读 <span class="num">12%</span>。安静的需求，不吵。</p>
+    </div>
+    <div class="card">
+      <h3>风险也想过了</h3>
+      <p>要招两名晚班店员（约六周）；临街铺 22 点后降音量。若三个月复购不到 <span class="num">四成</span>，时间改回来，合同按季签。</p>
+    </div>
+  </div>
+
+  <div class="big-card">
+    <div class="bc-head"><h3>试点的账（十个周末）</h3><div class="score">+41.2万 → 净增 29.5万</div></div>
+    <div class="mini-stats">
+      <div class="ms"><div class="v">¥41.2万</div><div class="l">增量营收 (D3)</div></div>
+      <div class="ms"><div class="v">¥8.6万</div><div class="l">晚班人力 (D3)</div></div>
+      <div class="ms"><div class="v">¥3.1万</div><div class="l">耗材水电 (D3)</div></div>
+      <div class="ms"><div class="v">64%</div><div class="l">会员续费意愿 (D6)</div></div>
+    </div>
+  </div>
+
+  <div class="arrow" style="bottom: 150px; right: 70px;">↖ 看这里！</div>
+
+  <div class="foot"><div>证据锚点 D1-D6 见附页 · 会员问卷 n=214 · POS 数据</div><div>T5 · PAPER CRAFT</div></div>
+</div>
+</body>
+</html>

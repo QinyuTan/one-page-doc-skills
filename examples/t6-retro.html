@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+  Style gallery · T6 时代复刻 Era Revival
+  数据集：西岸书店延时经营（C6 复古怀旧 × S1 网格 × Win95 灰）
+  T6 spec: 时代特征字 + 无衬线正文 · Win95 色板 · 窗口铬符号 · 符号服务叙事 · 直角
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>T6 时代复刻 · 延时经营95</title>
+<style>
+  :root {
+    --paper: #c3c3cb; --desk: #008080; --chrome: #c3c3cb; --chrome-hi: #dfdfdf; --chrome-lo: #85858d;
+    --ink: #10101a; --title: #000080; --white: #ffffff; --sel: #000080;
+    --sans: "Microsoft YaHei UI", "Noto Sans SC", "Segoe UI", sans-serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #7a7a82; font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 34px;
+    background: var(--desk); color: var(--ink); position: relative; overflow: hidden;
+  }
+  /* Win95 window chrome */
+  .win { background: var(--chrome); box-shadow: inset 1px 1px 0 var(--chrome-hi), inset -1px -1px 0 var(--chrome-lo); }
+  .titlebar { background: linear-gradient(90deg, #000080 0%, #1084d0 100%); color: var(--white); font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; }
+  .titlebar .btns span { display: inline-block; width: 16px; height: 14px; background: var(--chrome); box-shadow: inset 1px 1px 0 var(--chrome-hi), inset -1px -1px 0 var(--chrome-lo); margin-left: 3px; font-size: 9px; text-align: center; line-height: 14px; color: #000; font-weight: 700; }
+  .menubar { font-family: var(--mono); font-size: 11px; padding: 3px 8px; border-bottom: 1px solid var(--chrome-lo); box-shadow: 0 1px 0 var(--chrome-hi); }
+  .menubar u { text-decoration: underline; margin-right: 2px; }
+  .statusbar { font-family: var(--mono); font-size: 10px; padding: 3px 6px; display: flex; gap: 4px; }
+  .statusbar .cell { padding: 1px 8px; box-shadow: inset 1px 1px 0 var(--chrome-lo); }
+  .win-main { margin-top: 30px; }
+  .win-body { padding: 18px; background: var(--chrome); }
+  h1 { font-size: 30px; font-weight: 400; color: var(--title); font-family: var(--mono); margin: 14px 0 4px; }
+  .bevel { background: var(--white); box-shadow: inset 1px 1px 0 var(--chrome-lo), inset -1px -1px 0 var(--chrome-hi); padding: 14px; font-size: 13.5px; line-height: 1.8; }
+  .bevel b { color: var(--title); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; }
+  .field { background: var(--white); box-shadow: inset 1px 1px 0 var(--chrome-lo), inset -1px -1px 0 var(--chrome-hi); padding: 12px 14px; }
+  .field .fl { font-family: var(--mono); font-size: 10px; color: #444; border-bottom: 1px dotted var(--chrome-lo); padding-bottom: 4px; margin-bottom: 8px; }
+  .field .fv { font-family: var(--mono); font-size: 22px; font-weight: 700; color: var(--title); }
+  .field .fn { font-size: 10.5px; color: #333; margin-top: 4px; }
+  .progress-outer { background: var(--white); box-shadow: inset 1px 1px 0 var(--chrome-lo), inset -1px -1px 0 var(--chrome-hi); height: 20px; padding: 3px; margin-top: 10px; }
+  .progress-inner { height: 100%; width: 64%; background: repeating-linear-gradient(90deg, var(--title) 0 10px, #1084d0 10px 20px); }
+  .check-row { font-family: var(--mono); font-size: 11.5px; margin-top: 12px; display: grid; gap: 7px; }
+  .check-row .cb { display: inline-block; width: 13px; height: 13px; background: var(--white); box-shadow: inset 1px 1px 0 var(--chrome-lo), inset -1px -1px 0 var(--chrome-hi); vertical-align: -2px; margin-right: 8px; position: relative; }
+  .check-row .on .cb::after { content: "✓"; position: absolute; top: -3px; left: 1px; font-size: 13px; color: var(--title); font-weight: 700; }
+  .foot-win { position: absolute; bottom: 34px; left: 34px; right: 34px; }
+  .foot-win .statusbar .cell.grow { flex: 1; }
+  @page { size: A4; margin: 0; }
+  @media print { body { background: var(--desk); } .page { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="win win-main">
+    <div class="titlebar"><div>◧ 延时经营.EXE — 西岸书店半年决策</div><div class="btns"><span>_</span><span>□</span><span>✕</span></div></div>
+    <div class="menubar"><u>F</u>ile　<u>E</u>dit　<u>V</u>iew　<u>H</u>elp</div>
+    <div class="win-body">
+      <h1>周末不打烊，延到 24:00</h1>
+      <div class="bevel">
+        四月那个周五，打烊铃响前十分钟，店里还有 <b>47 位</b>客人。他们出门左转，走进满座率 <b>91%</b> (D5) 的 24 小时自习室——与其把深夜让出去，不如把灯留到零点。十个试点周末过后，账本说：<b>增收 ¥41.2 万，利润率与白天持平</b> (D3)。
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <div class="fl">晚间客流占比 (D1)</div>
+          <div class="fv">46%</div>
+          <div class="fn">周末 19:00 后，来自门店 POS</div>
+        </div>
+        <div class="field">
+          <div class="fl">晚间客单价 (D2)</div>
+          <div class="fv">¥73</div>
+          <div class="fn">对日间 ¥58，差价在咖啡与文创</div>
+        </div>
+        <div class="field">
+          <div class="fl">试点净增收 (D3)</div>
+          <div class="fv">¥29.5万</div>
+          <div class="fn">营收 +41.2 万，成本 +11.7 万</div>
+        </div>
+        <div class="field">
+          <div class="fl">深夜第一场景 (D4)</div>
+          <div class="fv">自习 52%</div>
+          <div class="fn">读书会 27% · 亲子共读 12%</div>
+        </div>
+      </div>
+
+      <div class="progress-outer"><div class="progress-inner"></div></div>
+      <div style="font-family: var(--mono); font-size: 10px; margin-top: 6px; color: #222;">会员深夜续费意愿 (D6)：64% — 已安装在 214 台梦想上</div>
+
+      <div class="check-row">
+        <div class="on"><span class="cb"></span>晚班店员 ×2（招聘周期约 6 周）</div>
+        <div class="on"><span class="cb"></span>临街 22:00 后降音量运营</div>
+        <div class="on"><span class="cb"></span>复购 &lt; 40% 则回滚原营业时间</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-win win">
+    <div class="statusbar">
+      <div class="cell">证据锚点 D1-D6 附页</div>
+      <div class="cell grow">开始 → 决策 → 灯留到零点</div>
+      <div class="cell">T6 · ERA REVIVAL</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

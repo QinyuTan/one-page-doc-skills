@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+  Style gallery · T7 终端黑幕 Terminal Noir
+  数据集：西岸书店延时经营（C7 科技未来 × S3 账本 × GitHub dark + 终端绿）
+  T7 spec: 全等宽 · 暗底 · 单霓虹 accent · 直角 · $ 提示符/语法高亮 · 光效克制
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>T7 终端黑幕 · nightshift.sh</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d; --green: #39d353; --dim: #8b949e; --text: #c9d1d9; --bright: #e6edf3;
+    --mono: "Cascadia Code", Consolas, "Roboto Mono", "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #05070a; font-family: var(--mono); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 46px 52px;
+    background: var(--bg); color: var(--text); position: relative; overflow: hidden;
+  }
+  .titlebar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--panel); border: 1px solid var(--border); border-bottom: 0; font-size: 12px; color: var(--dim); }
+  .dot { width: 11px; height: 11px; border-radius: 0; }
+  .dot.r { background: #f85149; } .dot.y { background: #d29922; } .dot.g { background: var(--green); }
+  .titlebar .path { margin-left: 10px; color: var(--text); }
+  .term { border: 1px solid var(--border); background: var(--bg); padding: 26px 28px; font-size: 13px; line-height: 2.0; }
+  .p { color: var(--green); font-weight: 700; }
+  .cmd { color: var(--bright); }
+  .comment { color: var(--dim); }
+  .flag { color: #79c0ff; }
+  .str { color: #a5d6ff; }
+  .kw { color: #ff7b72; }
+  .out { color: var(--text); }
+  .ok { color: var(--green); }
+  .banner { color: var(--green); font-weight: 700; letter-spacing: 0.06em; }
+  .divider { color: var(--border); }
+  table.data { width: 100%; border-collapse: collapse; margin: 8px 0 4px; font-size: 12px; }
+  table.data th { color: var(--dim); text-align: left; font-weight: 500; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--border); font-size: 10.5px; letter-spacing: 0.08em; }
+  table.data td { padding: 8px 14px 8px 0; border-bottom: 1px solid #21262d; color: var(--text); }
+  table.data td.n { color: var(--green); font-weight: 700; text-align: right; }
+  table.data td.k { color: #79c0ff; }
+  .cursor { display: inline-block; width: 8px; height: 15px; background: var(--green); vertical-align: -2px; animation: none; }
+  .foot { position: absolute; bottom: 42px; left: 52px; right: 52px; display: flex; justify-content: space-between; font-size: 10px; color: var(--dim); border-top: 1px solid var(--border); padding-top: 12px; }
+  .scan { position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,0.012) 3px 4px); }
+  @page { size: A4; margin: 0; }
+  @media print { body { background: var(--bg); } .page { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="titlebar">
+    <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+    <span class="path">~/westbank-bookstore — nightshift.sh — 90×34</span>
+  </div>
+  <div class="term">
+    <div><span class="p">$</span> <span class="cmd">./nightshift --extend weekend --to 24:00 <span class="flag">--dry-run</span></span></div>
+    <div class="comment"># 西岸书店 · 延时经营决策 · 数据锚点 D1-D6</div>
+    <div>&nbsp;</div>
+    <div class="banner">┌─ NIGHT SHIFT PROPOSAL ─────────────────────┐</div>
+    <div class="banner">│  周末闭店 22:00 → 24:00 · 常态化          │</div>
+    <div class="banner">└────────────────────────────────────────────┘</div>
+    <div>&nbsp;</div>
+    <div><span class="kw">DECISION</span>  <span class="out">灯留到零点。十个试点周末验证：</span></div>
+    <div>&nbsp;</div>
+    <table class="data">
+      <thead><tr><th>METRIC</th><th>VALUE</th><th style="text-align:right">ANCHOR</th></tr></thead>
+      <tbody>
+        <tr><td class="k">weekend_night_traffic</td><td>晚间客流占比 46%（客单价 ¥73 对日间 ¥58）</td><td class="n">D1 D2</td></tr>
+        <tr><td class="k">pilot_revenue_delta</td><td>10 个周末 +¥412,000</td><td class="n">D3</td></tr>
+        <tr><td class="k">pilot_cost_delta</td><td>人力 +¥86,000 · 耗材水电 +¥31,000</td><td class="n">D3</td></tr>
+        <tr><td class="k">night_scene_top</td><td>自习 52% · 读书会 27% · 亲子 12%</td><td class="n">D4</td></tr>
+        <tr><td class="k">nearby_competitors</td><td>1km 内 24h 自习室满座率 91%</td><td class="n">D5</td></tr>
+        <tr><td class="k">member_renew_intent</td><td>愿意深夜续费 64%（n=214）</td><td class="n">D6</td></tr>
+      </tbody>
+    </table>
+    <div>&nbsp;</div>
+    <div><span class="kw">RISK</span>     <span class="out">晚班 ×2（招聘 ~6 周）· 22:00 后降音量</span></div>
+    <div><span class="kw">ROLLBACK</span> <span class="out">复购 &lt; 40% → 恢复原营业时间（合同按季签）</span></div>
+    <div>&nbsp;</div>
+    <div class="divider">──────────────────────────────────────────────</div>
+    <div><span class="ok">✓</span> margin_neutral: <span class="ok">true</span>（边际利润率 71.6%，与日间持平）</div>
+    <div><span class="ok">✓</span> evidence_traceable: <span class="ok">true</span>（D1-D6 双向锚定附页溯源表）</div>
+    <div>&nbsp;</div>
+    <div><span class="p">$</span> <span class="cmd"><span class="str">"把周末的灯，留到零点。"</span></span> <span class="cursor"></span></div>
+  </div>
+
+  <div class="scan"></div>
+  <div class="foot"><div>exit 0 · 证据锚点 D1-D6 见附页 · POS + 问卷 n=214</div><div>T7 · TERMINAL NOIR</div></div>
+</div>
+</body>
+</html>

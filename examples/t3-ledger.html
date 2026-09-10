@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+  Style gallery · T3 档案账本 Archive Ledger
+  数据集：西岸书店延时经营（C3 克制高级 × S3 账本档案 × 象牙纸+墨+深藏青点缀）
+  T3 spec: 衬线 display + 等宽元数据 · 亮底 · 无彩+1 深点缀 · 直角 · 零装饰 · 横线表格+档案编号
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>T3 档案账本 · 延时经营审计</title>
+<style>
+  :root {
+    --paper: #faf9f7; --ink: #1a1a1a; --accent: #1f3a5f; --muted: #7a756c;
+    --serif: "Georgia", "Noto Serif SC", "Songti SC", serif;
+    --mono: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #e9e6df; font-family: var(--serif); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto; padding: 58px 62px;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+  }
+  .rule-top { border-top: 2px solid var(--ink); }
+  .meta-row { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; padding: 10px 0 22px; }
+  h1 { font-family: var(--serif); font-size: 44px; font-weight: 400; line-height: 1.25; letter-spacing: 0.015em; }
+  .doc-no { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.14em; margin-top: 14px; }
+  .verdict { border: 1px solid var(--ink); padding: 22px 26px; margin-top: 30px; }
+  .verdict .label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+  .verdict p { font-size: 16px; line-height: 1.7; font-family: var(--serif); }
+  .ledger { width: 100%; border-collapse: collapse; margin-top: 34px; }
+  .ledger th { font-family: var(--mono); font-size: 9.5px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 8px 12px 8px 0; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .ledger td { font-size: 13px; padding: 13px 12px 13px 0; border-bottom: 1px solid #d8d4cb; vertical-align: top; }
+  .ledger td.no { font-family: var(--mono); font-size: 10.5px; color: var(--accent); white-space: nowrap; }
+  .ledger td.n { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); font-size: 12px; }
+  .notes { margin-top: 34px; }
+  .notes h3 { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--ink); padding-bottom: 8px; margin-bottom: 14px; }
+  .notes p { font-size: 13.5px; line-height: 1.8; }
+  .notes p + p { margin-top: 10px; }
+  .stamp { position: absolute; top: 52px; right: 62px; font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; color: var(--accent); border: 1px solid var(--accent); padding: 6px 10px; text-transform: uppercase; transform: rotate(2deg); }
+  .foot { position: absolute; bottom: 54px; left: 62px; right: 62px; font-family: var(--mono); font-size: 9.5px; color: var(--muted); border-top: 1px solid var(--ink); padding-top: 12px; display: flex; justify-content: space-between; letter-spacing: 0.06em; }
+  @page { size: A4; margin: 0; }
+  @media print { body { background: var(--paper); } .page { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="stamp">AUDITED · 2026-06</div>
+  <div class="rule-top"></div>
+  <div class="meta-row"><div>ARCHIVE LEDGER · 经营决策备案</div><div>REV. 3 · 2026-09-10</div></div>
+  <h1>周末延时营业：审计结论与账目</h1>
+  <div class="doc-no">DOC NO. WB-2026-EXT-0031 · 西岸书店</div>
+
+  <div class="verdict">
+    <div class="label">Verdict · 结论</div>
+    <p>建议将周末闭店时间由 22:00 延至 24:00 常态化。十个试点周末合计增收 ¥41.2 万，利润率与日间持平；附回滚条款。</p>
+  </div>
+
+  <table class="ledger">
+    <thead>
+      <tr><th style="width:64px">编号</th><th>科目</th><th class="n">金额 / 数值</th><th style="width:120px">锚点</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="no">L-01</td><td>周末晚 19:00 后客流占比</td><td class="n">46%</td><td>D1</td></tr>
+      <tr><td class="no">L-02</td><td>晚间客单价（对日间 ¥58）</td><td class="n">¥73</td><td>D2</td></tr>
+      <tr><td class="no">L-03</td><td>试点增量营收（10 个周末）</td><td class="n">+¥412,000</td><td>D3</td></tr>
+      <tr><td class="no">L-04</td><td>人力成本增项（晚班 ×2）</td><td class="n">−¥86,000</td><td>D3</td></tr>
+      <tr><td class="no">L-05</td><td>耗材水电增项</td><td class="n">−¥31,000</td><td>D3</td></tr>
+      <tr><td class="no">L-06</td><td>深夜场景：自习阅读占比</td><td class="n">52%</td><td>D4</td></tr>
+      <tr><td class="no">L-07</td><td>1km 内连锁自习室满座率</td><td class="n">91%</td><td>D5</td></tr>
+      <tr><td class="no">L-08</td><td>会员深夜续费意愿（n=214）</td><td class="n">64%</td><td>D6</td></tr>
+    </tbody>
+  </table>
+
+  <div class="notes">
+    <h3>Notes · 备查</h3>
+    <p>利润率结论依据：增量营收 41.2 万对增量成本 11.7 万，边际利润率 71.6%，与日间综合利润率差在两个百分点以内，视为持平。</p>
+    <p>回滚条款：若延时满三个月复购不足 40%，恢复原营业时间，晚班招聘合同按季度续签以保留退出余地。噪音治理：临街物业约定 22:00 后降音量运营。</p>
+  </div>
+
+  <div class="foot"><div>证据锚点 D1-D6 · 溯源表存档于附页</div><div>T3 · ARCHIVE LEDGER</div></div>
+</div>
+</body>
+</html>

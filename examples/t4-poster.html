@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+  Style gallery · T4 海报宣言 Poster Manifesto
+  数据集：西岸书店延时经营（C4 大胆宣言 × S4 海报构图 × 奶油底+消防红）
+  T4 spec: 上半超大字单一主张 · 下半信息区 · 超粗 display · 正文 ≤150 字 · 巨号数字
+-->
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>T4 海报宣言 · 灯留到零点</title>
+<style>
+  :root {
+    --paper: #f5edd8; --ink: #161310; --red: #d93a1f;
+    --sans: "Helvetica Neue", "Microsoft YaHei UI", "Noto Sans SC", sans-serif;
+    --mono: "Cascadia Code", Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #ddd4bd; font-family: var(--sans); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page {
+    width: 794px; height: 1123px; margin: 24px auto;
+    background: var(--paper); color: var(--ink); position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .hero { height: 58%; padding: 44px 48px 0; position: relative; }
+  .topline { font-family: var(--mono); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink); display: flex; justify-content: space-between; border-bottom: 3px solid var(--ink); padding-bottom: 14px; }
+  .claim { font-weight: 900; font-size: 118px; line-height: 1.04; letter-spacing: -0.015em; margin-top: 40px; }
+  .claim .r { color: var(--red); }
+  .claim-sub { font-weight: 900; font-size: 34px; margin-top: 26px; letter-spacing: 0.06em; }
+  .big-no { position: absolute; bottom: 18px; right: 48px; font-weight: 900; font-size: 88px; color: var(--red); line-height: 1; }
+  .big-no small { font-family: var(--mono); font-size: 11px; color: var(--ink); letter-spacing: 0.14em; display: block; text-align: right; font-weight: 400; margin-bottom: 6px; }
+  .info { flex: 1; background: var(--ink); color: var(--paper); padding: 36px 48px; display: flex; flex-direction: column; }
+  .info .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); margin-bottom: 18px; }
+  .info-cols { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; }
+  .info p { font-size: 13.5px; line-height: 1.8; font-weight: 400; }
+  .info p b { font-weight: 700; }
+  .facts { font-family: var(--mono); font-size: 11px; line-height: 2.1; }
+  .facts span { color: var(--red); font-weight: 600; margin-right: 8px; }
+  .info .foot { margin-top: auto; font-family: var(--mono); font-size: 9.5px; color: #8a8378; letter-spacing: 0.08em; display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid #3c3830; }
+  @page { size: A4; margin: 0; }
+  @media print { body { background: var(--paper); } .page { margin: 0; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="hero">
+    <div class="topline"><div>MANIFESTO · 西岸书店</div><div>2026 半年决策</div></div>
+    <div class="claim">灯<br>留到<br><span class="r">零点。</span></div>
+    <div class="claim-sub">周末营业延至 24:00</div>
+    <div class="big-no"><small>试点增收 (D3)</small>¥41.2万</div>
+  </div>
+  <div class="info">
+    <div class="tag">Why · 三句话</div>
+    <div class="info-cols">
+      <div>
+        <p><b>夜里有客人。</b>周末晚七点后占全天客流 46% (D1)，客单价还高十五块 (D2)。<b>夜里有对手。</b>一公里内两家 24 小时自习室满座率 91% (D5)，需求摆在那里。<b>账是清醒的。</b>十个周末增收 41.2 万，多付人力与耗材 11.7 万，利润率持平；复购不足四成，原样回滚。</p>
+      </div>
+      <div class="facts">
+        <div><span>D1</span>晚间客流 46%</div>
+        <div><span>D2</span>客单价 ¥73</div>
+        <div><span>D4</span>自习阅读 52%</div>
+        <div><span>D6</span>续费意愿 64%</div>
+      </div>
+    </div>
+    <div class="foot"><div>证据锚点 D1-D6 见附页溯源表 · 会员问卷 n=214</div><div>T4 · POSTER MANIFESTO</div></div>
+  </div>
+</div>
+</body>
+</html>

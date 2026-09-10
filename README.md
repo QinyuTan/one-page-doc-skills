@@ -67,23 +67,37 @@ Routes to the *be convinced* fork → Insight Page: conclusion block with confid
 
 ## Included Styles
 
-Seven presets, grouped by the job they do. Each is fully specified in the style system — you never need to name one.
+Seven presets, grouped by the job they do — shown below, all built from the same decision data (a bookstore's late-hours call), so you can compare temperaments apples-to-apples. Each is fully specified in the style system; you never need to name one.
 
 **For decisions & data**
 
-- **Swiss Blueprint** — Klein blue `#002FA7` on warm paper, hairline rules, display type that gets thinner as it gets bigger. The modernist's year-end report.
-- **Archive Ledger** — ivory and ink with one deep accent (crimson or navy), archival numbering on ledger tables. The institution's vault, for white papers and investor briefs.
+- [**Swiss Blueprint**](examples/proposal-q3-budget-zh.png) — Klein blue `#002FA7` on warm paper, hairline rules, display type that gets thinner as it gets bigger. The modernist's year-end report.
+- [**Archive Ledger**](examples/t3-ledger.html) — ivory and ink with one deep accent, archival numbering on ledger tables. The institution's vault, for white papers and investor briefs.
 
 **For stories & people**
 
-- **Magazine Feature** — serif display over sans body, drop caps, pull quotes, five ink themes. The Sunday long-read.
-- **Paper Craft** — handwritten annotations over a readable sans body, paper texture, washi tape; three hand-drawn touches maximum. The workshop table.
+- [**Magazine Feature**](examples/t2-magazine.html) — serif display over sans body, drop caps, pull quotes, two-column justified text. The Sunday long-read.
+- [**Paper Craft**](examples/t5-paper.html) — handwritten annotations over a readable sans body, paper grain, washi tape; three hand-drawn touches maximum. The workshop table.
 
 **For statements**
 
-- **Poster Manifesto** — one claim in ultra-black type across half the page, evidence takes the other half. Electric yellow on black, fire red on cream, or orange on charcoal.
-- **Era Revival** — Win95 chrome, cassette-rainbow, riso print; era symbols that serve the story. Nostalgia with intent.
-- **Terminal Noir** — terminal green `#39d353` on GitHub dark `#0d1117`, all mono, scanlines. Ships to engineers.
+- [**Poster Manifesto**](examples/t4-poster.html) — one claim in ultra-black type across half the page, evidence takes the other half. Cream paper, fire red.
+- [**Era Revival**](examples/t6-retro.html) — a full Win95 window as the page: title bar, menu, status bar, checkboxes. Nostalgia with intent.
+- [**Terminal Noir**](examples/t7-terminal.html) — the decision rendered as a shell session: prompt, flags, syntax highlighting, exit 0. Ships to engineers.
+
+### Style gallery — same data, six temperaments
+
+<p>
+  <a href="examples/t2-magazine.png"><img src="examples/t2-magazine.png" width="32.5%" alt="Magazine Feature — the Sunday long-read"></a>
+  <a href="examples/t3-ledger.png"><img src="examples/t3-ledger.png" width="32.5%" alt="Archive Ledger — the institution's vault"></a>
+  <a href="examples/t4-poster.png"><img src="examples/t4-poster.png" width="32.5%" alt="Poster Manifesto — one claim, half a page"></a>
+</p>
+<p>
+  <a href="examples/t5-paper.png"><img src="examples/t5-paper.png" width="32.5%" alt="Paper Craft — the workshop table"></a>
+  <a href="examples/t6-retro.png"><img src="examples/t6-retro.png" width="32.5%" alt="Era Revival — Win95 nostalgia with intent"></a>
+  <a href="examples/t7-terminal.png"><img src="examples/t7-terminal.png" width="32.5%" alt="Terminal Noir — decision as a shell session"></a>
+</p>
+<sub>One decision — extend the bookstore's weekend hours to midnight — rendered in six of the seven presets. Click any image for the full page; the HTML sources live in `examples/`.</sub>
 
 ## Architecture
 

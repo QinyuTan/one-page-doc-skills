@@ -67,23 +67,37 @@ npx skills add QinyuTan/one-page-doc-skills
 
 ## 内置风格
 
-七套预捆模板，按用途分组。每套都在风格系统里有完整规格——你永远不需要叫出它们的名字。
+七套预捆模板，按用途分组——下面六套示例全部用同一份决策数据（一家书店的延时经营判断）做成，可以横向比较气质差异。每套都在风格系统里有完整规格，你永远不需要叫出它们的名字。
 
 **决策与数据**
 
-- **瑞士蓝本** —— 克莱因蓝 `#002FA7` 落在暖白纸上，发丝线分割，字号越大字重越轻。现代主义者的年报。
-- **档案账本** —— 象牙纸配墨色，单一深点缀（腥红或深藏青），账本表格带档案编号。机构的地下档案库，适合白皮书与投资人简报。
+- [**瑞士蓝本**](examples/proposal-q3-budget-zh.png) —— 克莱因蓝 `#002FA7` 落在暖白纸上，发丝线分割，字号越大字重越轻。现代主义者的年报。
+- [**档案账本**](examples/t3-ledger.html) —— 象牙纸配墨色，单一深点缀，账本表格带档案编号。机构的地下档案库，适合白皮书与投资人简报。
 
 **故事与人**
 
-- **杂志特稿** —— 衬线大标题配无衬线正文，首字下沉，引文块，五套墨色主题。周日刊的长篇特辑。
-- **纸上手作** —— 可读的无衬线正文上手写批注，纸纹、和纸胶带，手绘元素至多三处。工作坊的那张桌子。
+- [**杂志特稿**](examples/t2-magazine.html) —— 衬线大标题配无衬线正文，首字下沉，引文块，两栏对齐排版。周日刊的长篇特辑。
+- [**纸上手作**](examples/t5-paper.html) —— 可读的无衬线正文上手写批注，纸纹、和纸胶带，手绘元素至多三处。工作坊的那张桌子。
 
 **宣言与态度**
 
-- **海报宣言** —— 半页超粗体给一句主张，另外半页装证据。黑底电光黄、奶油底消防红、深灰底橙，三选一。
-- **时代复刻** —— Win95 窗口铬、卡带彩虹、riso 印刷，时代符号必须服务于叙事。有意图的怀旧。
-- **终端黑幕** —— 终端绿 `#39d353` 落在 GitHub 暗色 `#0d1117` 上，全等宽字体，扫描线。发给工程师的东西。
+- [**海报宣言**](examples/t4-poster.html) —— 半页超粗体给一句主张，另外半页装证据。奶油纸配消防红。
+- [**时代复刻**](examples/t6-retro.html) —— 整页是一个 Win95 窗口：标题栏、菜单、状态栏、复选框。有意图的怀旧。
+- [**终端黑幕**](examples/t7-terminal.html) —— 把决策渲染成一次 shell 会话：提示符、参数、语法高亮、exit 0。发给工程师的东西。
+
+### 风格画廊 —— 同一份数据，六种气质
+
+<p>
+  <a href="examples/t2-magazine.png"><img src="examples/t2-magazine.png" width="32.5%" alt="杂志特稿——周日刊长篇特辑"></a>
+  <a href="examples/t3-ledger.png"><img src="examples/t3-ledger.png" width="32.5%" alt="档案账本——机构的地下档案库"></a>
+  <a href="examples/t4-poster.png"><img src="examples/t4-poster.png" width="32.5%" alt="海报宣言——半页一句主张"></a>
+</p>
+<p>
+  <a href="examples/t5-paper.png"><img src="examples/t5-paper.png" width="32.5%" alt="纸上手作——工作坊的那张桌子"></a>
+  <a href="examples/t6-retro.png"><img src="examples/t6-retro.png" width="32.5%" alt="时代复刻——Win95 有意图的怀旧"></a>
+  <a href="examples/t7-terminal.png"><img src="examples/t7-terminal.png" width="32.5%" alt="终端黑幕——决策即 shell 会话"></a>
+</p>
+<sub>同一个决策——书店周末延时到零点——用七套模板中的六套各排一页。点击任意图看整页，HTML 源文件在 `examples/` 里。</sub>
 
 ## 架构
 
