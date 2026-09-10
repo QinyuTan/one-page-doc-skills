@@ -48,7 +48,7 @@ This skill is two decision layers, each with one authoritative reference:
 **Any agent with skills support** (Claude Code, Codex, Cursor, Windsurf, …):
 
 ```bash
-npx skills add <your-github-username>/one-pager
+npx skills add QinyuTan/one-page-doc-skills
 ```
 
 **Manual**: copy the `one-pager/` directory into your agent's skills folder (e.g. `.claude/skills/` or `~/.agents/skills/`).
